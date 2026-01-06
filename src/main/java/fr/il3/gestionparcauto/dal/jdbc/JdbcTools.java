@@ -1,4 +1,4 @@
-package fr.il3.gestionParcAuto.dal.jdbc;
+package fr.il3.gestionparcauto.dal.jdbc;
 
 import java.io.IOException;
 import java.util.Properties;

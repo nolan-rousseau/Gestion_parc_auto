@@ -1,14 +1,14 @@
 package fr.il3.gestionparcauto.bo;
 
-public class Film {
+public class Parc {
     private String titre;
     private int annee;
     private String realisateur;
     private int duree;
 
-    public Film(){};
+    public Parc(){};
 
-    public Film(String titre, int annee, String realisateur, int duree) {
+    public Parc(String titre, int annee, String realisateur, int duree) {
         this.titre = titre;
         this.annee = annee;
         this.duree = duree;

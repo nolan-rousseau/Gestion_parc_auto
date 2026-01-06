@@ -1,7 +1,7 @@
 package fr.il3.gestionparcauto.utils;
 
-public class FilmException extends Exception{
-    public FilmException(String message) {
+public class ParcException extends Exception{
+    public ParcException(String message) {
         super(message);
     }
 }

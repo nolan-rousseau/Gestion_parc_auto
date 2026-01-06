@@ -1,8 +1,8 @@
-package fr.il3.gestionParcAuto.ihm.javafx;
+package fr.il3.gestionparcauto.ihm.javafx;
 
-import fr.il3.gestionParcAuto.bll.FilmController;
-import fr.il3.gestionParcAuto.bo.Film;
-import fr.il3.gestionParcAuto.utils.FilmException;
+import fr.il3.gestionparcauto.bll.ParcController;
+import fr.il3.gestionparcauto.bo.Parc;
+import fr.il3.gestionparcauto.utils.ParcException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -26,10 +26,10 @@ public class EcranController {
 
     int indexFilm = 0;
 
-    public Film getFilm(int index) {
+    public Parc getFilm(int index) {
         try {
-            return FilmController.getController().selectFilm().get(index);
-        } catch (FilmException e) {
+            return ParcController.getController().selectFilm().get(index);
+        } catch (ParcException e) {
             afficherException(e.getMessage());
             return null;
         }
@@ -41,12 +41,12 @@ public class EcranController {
         afficherFilm(getFilm(indexFilm));
     }
 
-    public void afficherFilm(Film film) {
-        if (film != null) {
-            tb_filmTitle.setText(film.getTitre());
-            tb_filmDuree.setText(Integer.toString(film.getDuree()));
-            tb_filmRealisateur.setText(film.getRealisateur());
-            tb_filmAnnee.setText(Integer.toString(film.getAnnee()));
+    public void afficherFilm(Parc parc) {
+        if (parc != null) {
+            tb_filmTitle.setText(parc.getTitre());
+            tb_filmDuree.setText(Integer.toString(parc.getDuree()));
+            tb_filmRealisateur.setText(parc.getRealisateur());
+            tb_filmAnnee.setText(Integer.toString(parc.getAnnee()));
         } else  {
             afficherException("Le film n'existe pas");
         }
