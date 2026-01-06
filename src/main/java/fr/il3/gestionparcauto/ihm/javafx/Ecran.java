@@ -1,4 +1,4 @@
-package fr.il3.gestionParcAuto.ihm.javafx;
+package fr.il3.gestionparcauto.ihm.javafx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ public class Ecran extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Ecran.fxml"));
+            FXMLLoader loader = new FXMLLoader(Ecran.class.getResource("/fr/il3/gestionparcauto/fxml/Ecran.fxml"));
             Pane root = loader.load();
 
 

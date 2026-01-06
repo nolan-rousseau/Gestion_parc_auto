@@ -1,13 +1,13 @@
 package fr.il3.gestionparcauto.dal.jdbc;
 
-import fr.il3.gestionparcauto.bo.Film;
-import fr.il3.gestionparcauto.dal.FilmDAO;
-import fr.il3.gestionparcauto.utils.FilmException;
+import fr.il3.gestionparcauto.bo.Parc;
+import fr.il3.gestionparcauto.dal.ParcDAO;
+import fr.il3.gestionparcauto.utils.ParcException;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class FilmDAOJdbcImpl implements FilmDAO {
+public class ParcDAOJdbcImpl implements ParcDAO {
 
     private final String URL = JdbcTools.getProperty("url");
     private final String USERNAME = JdbcTools.getProperty("username");
@@ -17,45 +17,45 @@ public class FilmDAOJdbcImpl implements FilmDAO {
     private final String SELECT = "SELECT * FROM Films";
 
     @Override
-    public void addFilm(Film film) throws FilmException {
+    public void addFilm(Parc parc) throws ParcException {
         try{
             Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             PreparedStatement stmt = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, film.getTitre());
-            stmt.setInt(2, film.getDuree());
-            stmt.setInt(3, film.getAnnee());
-            stmt.setString(4, film.getRealisateur());
+            stmt.setString(1, parc.getTitre());
+            stmt.setInt(2, parc.getDuree());
+            stmt.setInt(3, parc.getAnnee());
+            stmt.setString(4, parc.getRealisateur());
 
             stmt.executeUpdate();
 
         }catch (SQLException e) {
             e.printStackTrace();
-            throw new FilmException("Erreur BDD : " + e.getMessage());
+            throw new ParcException("Erreur BDD : " + e.getMessage());
         }
     }
 
     @Override
-    public ArrayList<Film> selectAll() throws FilmException {
-        ArrayList<Film> films = new ArrayList<>();
+    public ArrayList<Parc> selectAll() throws ParcException {
+        ArrayList<Parc> parcs = new ArrayList<>();
 
         try {
             Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(SELECT);
-            Film film = null;
+            Parc parc = null;
             while (rs.next()) {
-                film = new Film();
-                film.setTitre(rs.getString("titre"));
-                film.setDuree(rs.getInt("duree"));
-                film.setAnnee(rs.getInt("annee"));
-                film.setRealisateur(rs.getString("realisateur"));
+                parc = new Parc();
+                parc.setTitre(rs.getString("titre"));
+                parc.setDuree(rs.getInt("duree"));
+                parc.setAnnee(rs.getInt("annee"));
+                parc.setRealisateur(rs.getString("realisateur"));
 
-                films.add(film);
+                parcs.add(parc);
             }
         }catch (SQLException e) {
             e.printStackTrace();
-            throw new FilmException("Erreur BDD : " + e.getMessage());
+            throw new ParcException("Erreur BDD : " + e.getMessage());
         }
-        return films;
+        return parcs;
     }
 }

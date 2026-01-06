@@ -3,7 +3,8 @@ module fr.il3.gestionparcauto {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
+    requires java.sql;
 
-    opens fr.il3.gestionparcauto to javafx.fxml;
-    exports fr.il3.gestionparcauto;
+    exports fr.il3.gestionparcauto.ihm.javafx;
+    opens fr.il3.gestionparcauto.ihm.javafx to javafx.fxml;
 }

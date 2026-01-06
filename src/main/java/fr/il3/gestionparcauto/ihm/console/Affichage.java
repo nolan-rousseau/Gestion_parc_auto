@@ -1,6 +1,6 @@
-package fr.il3.gestionParcAuto.ihm.console;
+package fr.il3.gestionparcauto.ihm.console;
 
-import fr.il3.gestionParcAuto.bo.Film;
+import fr.il3.gestionparcauto.bo.Parc;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,10 +20,10 @@ public class Affichage {
                 "***********************************");
     }
 
-    public void afficherListeFilms(ArrayList<Film> films){
+    public void afficherListeFilms(ArrayList<Parc> parcs){
         System.out.println("*** Liste des films disponibles ***");
-        for(Film film : films){
-            System.out.println("    - " + film);
+        for(Parc parc : parcs){
+            System.out.println("    - " + parc);
         }
     }
 
@@ -39,7 +39,7 @@ public class Affichage {
         System.out.println("***** A bientôt !!! *****");
     }
 
-    public Film ajouterFilm(){
+    public Parc ajouterFilm(){
         System.out.println("*** Ajouter un film ***");
         System.out.println("Saisir le titre :");
         String titre = scan.next();
@@ -53,7 +53,7 @@ public class Affichage {
         System.out.println("Saisir le réalisateur :");
         String realisateur = scan.next();
         scan.nextLine();
-        return new Film(titre, annee, realisateur, duree);
+        return new Parc(titre, annee, realisateur, duree);
     }
 
     public void afficherMenu(){
