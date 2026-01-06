@@ -1,4 +1,4 @@
-package fr.il3.gestionparcauto.dal.jdbc;
+package fr.il3.gestionparcauto.dal.jdbc_old;
 
 import fr.il3.gestionparcauto.bo.Parc;
 import fr.il3.gestionparcauto.dal.ParcDAO;

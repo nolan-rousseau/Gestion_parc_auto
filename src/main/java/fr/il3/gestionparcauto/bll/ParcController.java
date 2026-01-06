@@ -2,6 +2,8 @@ package fr.il3.gestionparcauto.bll;
 
 import fr.il3.gestionparcauto.bo.Parc;
 import fr.il3.gestionparcauto.dal.DAOFactory;
+import fr.il3.gestionparcauto.dal.jdbc.JdbcTools;
+import fr.il3.gestionparcauto.dal.jdbc.h2Console;
 import fr.il3.gestionparcauto.utils.ParcException;
 
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ public class ParcController {
     public static ParcController getController(){
         if(parcController ==null){
             parcController = new ParcController();
+            JdbcTools.main(null);
+            h2Console.main(null);
         }
         return parcController;
     }
