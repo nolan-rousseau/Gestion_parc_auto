@@ -1,39 +1,217 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.il3.gestionparcauto.ihm.javafx.EcranController">
-    <children>
-      <Label layoutX="176.0" layoutY="44.0" text="Titre :">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="176.0" layoutY="112.0" text="Durée :">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="176.0" layoutY="187.0" text="Année :">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="176.0" layoutY="256.0" text="Réalisateur :">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="btt_filmPrevious" layoutX="176.0" layoutY="313.0" mnemonicParsing="false" text="&lt;" />
-      <Button fx:id="btt_filmNext" layoutX="404.0" layoutY="313.0" mnemonicParsing="false" onAction="#filmNext" text="&gt;" />
-      <Button layoutX="200.0" layoutY="313.0" mnemonicParsing="false" text="sauvegarder" />
-      <Button layoutX="281.0" layoutY="313.0" mnemonicParsing="false" text="ajouter" />
-      <Button layoutX="334.0" layoutY="313.0" mnemonicParsing="false" text="supprimer" />
-      <TextField fx:id="tb_filmTitle" layoutX="294.0" layoutY="44.0" />
-      <TextField fx:id="tb_filmDuree" layoutX="294.0" layoutY="112.0" />
-      <TextField fx:id="tb_filmAnnee" layoutX="294.0" layoutY="187.0" />
-      <TextField fx:id="tb_filmRealisateur" layoutX="294.0" layoutY="256.0" />
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="800.0" prefWidth="1200.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" text="Créer une affectation">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Statistiques">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="800.0" prefWidth="1200.0">
+               <children>
+                  <VBox prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="403.0" text="Véhicules" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Ajouter">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Modifier">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Supprimer">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="8.0" right="8.0" top="8.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ListView prefHeight="400.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </VBox.margin>
+                        </ListView>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Expoter (.csv)" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="8.0" right="8.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label text="Informations sur le véhicule :">
+                           <VBox.margin>
+                              <Insets left="8.0" top="8.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ListView prefHeight="100.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" />
+                           </VBox.margin>
+                        </ListView>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="405.0" text="Sélectionner un véhicule ou un agent" textAlignment="CENTER" />
+                        <Label text="NOM DE LA SELECTION">
+                           <VBox.margin>
+                              <Insets left="8.0" top="16.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="24.0" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Voir tous">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <ChoiceBox prefWidth="150.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin></ChoiceBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <TableView prefHeight="400.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" />
+                           </VBox.margin>
+                        </TableView>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="405.0" text="Agents" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Ajouter">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Modifier">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Supprimer">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="8.0" right="8.0" top="8.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ListView prefHeight="400.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </VBox.margin>
+                        </ListView>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Expoter (.csv)" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="8.0" right="8.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label text="Informations sur l'agent :">
+                           <VBox.margin>
+                              <Insets left="8.0" top="8.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ListView prefHeight="100.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" />
+                           </VBox.margin>
+                        </ListView>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children></VBox>
    </children>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
 </Pane>
