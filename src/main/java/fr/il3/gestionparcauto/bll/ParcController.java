@@ -1,10 +1,7 @@
 package fr.il3.gestionparcauto.bll;
 
-import fr.il3.gestionparcauto.bo.Parc;
 import fr.il3.gestionparcauto.dal.DAOFactory;
-import fr.il3.gestionparcauto.dal.jdbc.JdbcTools;
-import fr.il3.gestionparcauto.dal.jdbc.h2Console;
-import fr.il3.gestionparcauto.utils.ParcException;
+import fr.il3.gestionparcauto.utils.DalException;
 
 import java.util.ArrayList;
 
@@ -14,26 +11,24 @@ public class ParcController {
     public static ParcController getController(){
         if(parcController ==null){
             parcController = new ParcController();
-            JdbcTools.main(null);
-            h2Console.main(null);
         }
         return parcController;
     }
 
-    public ArrayList<Parc> selectFilm() throws ParcException {
+    public ArrayList<Parc> selectFilm() throws DalException {
         DAOFactory daoFactory = new DAOFactory();
         return daoFactory.getFilmDAO().selectAll();
     }
 
-    public void addFilm(Parc parc) throws ParcException {
+    public void addFilm(Parc parc) throws DalException {
         if(parc.getTitre()==null){
-            throw new ParcException("Le titre du film est obligatoire.");
+            throw new DalException("Le titre du film est obligatoire.");
         } else if (parc.getTitre()==null) {
-            throw new ParcException("Le réalisateur du film est obligatoire.");
+            throw new DalException("Le réalisateur du film est obligatoire.");
         } else if (parc.getAnnee()<=1800) {
-            throw new ParcException("L'année doit être supérieur à 1800.");
+            throw new DalException("L'année doit être supérieur à 1800.");
         }else if (parc.getDuree()<=0) {
-            throw new ParcException("La durée du film doit être positive.");
+            throw new DalException("La durée du film doit être positive.");
         }
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getFilmDAO().addFilm(parc);

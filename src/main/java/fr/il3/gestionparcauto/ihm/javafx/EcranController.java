@@ -2,7 +2,7 @@ package fr.il3.gestionparcauto.ihm.javafx;
 
 import fr.il3.gestionparcauto.bll.ParcController;
 import fr.il3.gestionparcauto.bo.Parc;
-import fr.il3.gestionparcauto.utils.ParcException;
+import fr.il3.gestionparcauto.utils.DalException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -29,7 +29,7 @@ public class EcranController {
     public Parc getFilm(int index) {
         try {
             return ParcController.getController().selectFilm().get(index);
-        } catch (ParcException e) {
+        } catch (DalException e) {
             afficherException(e.getMessage());
             return null;
         }

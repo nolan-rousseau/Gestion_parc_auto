@@ -1,12 +1,12 @@
 package fr.il3.gestionparcauto.dal;
 
-import fr.il3.gestionparcauto.dal.fichier.ParcDAOFichierImpl;
+import fr.il3.gestionparcauto.dal.jdbc.ServiceDAOJdbcImpl;
 
 public class DAOFactory {
 
     public DAOFactory() {    }
 
-    public ParcDAOFichierImpl getFilmDAO(){
-        return new ParcDAOFichierImpl();
+    public ServiceDAOJdbcImpl getServiceDAO(){
+        return new ServiceDAOJdbcImpl();
     }
 }
