@@ -8,13 +8,9 @@ public class Employee {
     private String phone;
     private int serviceId;
 
-    public Employee(String firstName, String lastName, String email, String phone, int serviceId){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.serviceId = serviceId;
-    };
+    public Employee() {
+
+    }
 
     public Employee(int id, String firstName, String lastName, String email, String phone, int serviceId) {
         this.id = id;
@@ -72,5 +68,9 @@ public class Employee {
 
     public void setServiceId(int serviceId) {
         this.serviceId = serviceId;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

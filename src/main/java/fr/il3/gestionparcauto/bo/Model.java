@@ -38,4 +38,7 @@ public class Model {
         this.brandId = brandId;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }

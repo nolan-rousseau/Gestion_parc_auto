@@ -47,7 +47,7 @@ public class BrandDAOJdbcImpl implements BrandDAO {
             }
         }catch (SQLException e) {
             e.printStackTrace();
-            throw new DalException("Erreur BDD - Sélection des brands " + e.getMessage());
+            throw new DalException("Erreur BDD - Sélection des marques " + e.getMessage());
         }
         return brands;
     }
@@ -63,12 +63,12 @@ public class BrandDAOJdbcImpl implements BrandDAO {
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected == 0) {
-                throw new DalException("Échec de la mise à jour : aucun brand trouvé avec l'ID " + brand.getId());
+                throw new DalException("Échec de la mise à jour : aucune marque trouvée avec l'ID " + brand.getId());
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DalException("Erreur BDD - Mise à jour brand : " + e.getMessage());
+            throw new DalException("Erreur BDD - Mise à jour marque : " + e.getMessage());
         }
     }
 
@@ -82,12 +82,12 @@ public class BrandDAOJdbcImpl implements BrandDAO {
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected == 0) {
-                throw new DalException("Échec de la suppression : aucun brand trouvé avec l'ID " + id);
+                throw new DalException("Échec de la suppression : aucune marque trouvée avec l'ID " + id);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DalException("Erreur BDD - Suppression brand : " + e.getMessage());
+            throw new DalException("Erreur BDD - Suppression marque : " + e.getMessage());
         }
     }
 }

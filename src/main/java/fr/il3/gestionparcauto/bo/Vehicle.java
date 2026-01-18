@@ -5,20 +5,16 @@ import java.time.LocalDate;
 public class Vehicle {
     private int id;
     private String registration;
-    private String mileage;
+    private Long mileage;
     private LocalDate registrationDate;
     private String comment;
     private int modelId;
 
-    public Vehicle(String registration, String mileage, LocalDate registrationDate, String comment, int modelId) {
-        this.registration = registration;
-        this.mileage = mileage;
-        this.registrationDate = registrationDate;
-        this.comment = comment;
-        this.modelId = modelId;
-    };
+    public Vehicle() {
 
-    public Vehicle(int id, String registration, String mileage, LocalDate registrationDate, String comment, int modelId) {
+    }
+
+    public Vehicle(int id, String registration, Long mileage, LocalDate registrationDate, String comment, int modelId) {
         this.id = id;
         this.registration = registration;
         this.mileage = mileage;
@@ -44,11 +40,11 @@ public class Vehicle {
         this.registration = registration;
     }
 
-    public String getMileage() {
+    public Long getMileage() {
         return mileage;
     }
 
-    public void setMileage(String mileage) {
+    public void setMileage(Long mileage) {
         this.mileage = mileage;
     }
 
@@ -74,5 +70,9 @@ public class Vehicle {
 
     public void setModelId(int modelId) {
         this.modelId = modelId;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
