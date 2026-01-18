@@ -1,11 +1,11 @@
 package fr.il3.gestionparcauto.ihm.console;
 
-import fr.il3.gestionparcauto.bll.ParcController;
+//import fr.il3.gestionparcauto.bll.ParcController;
 import fr.il3.gestionparcauto.utils.DalException;
 
 public class Controle {
 
-    private ParcController controller;
+//    private ParcController controller;
     public Controle(){};
 
     public static void main(String[] args) throws DalException {
@@ -20,21 +20,21 @@ public class Controle {
             int choix = affichage.saisirChoix();
             switch (choix){
                 case 1:
-                    try {
-                        affichage.afficherListeFilms(ParcController.getController().selectFilm());
-                    } catch (DalException e) {
-                        affichage.afficherException(e.getMessage());
-                    }finally {
-                        break;
-                    }
+//                    try {
+//                        affichage.afficherListeFilms(ParcController.getController().selectFilm());
+//                    } catch (DalException e) {
+//                        affichage.afficherException(e.getMessage());
+//                    }finally {
+//                        break;
+//                    }
                 case 2:
-                    try {
-                        ParcController.getController().addFilm(affichage.ajouterFilm());
-                    } catch (DalException e) {
-                        affichage.afficherException(e.getMessage());
-                    }finally {
-                        break;
-                    }
+//                    try {
+//                        ParcController.getController().addFilm(affichage.ajouterFilm());
+//                    } catch (DalException e) {
+//                        affichage.afficherException(e.getMessage());
+//                    }finally {
+//                        break;
+//                    }
                 case 3:
                     affichage.afficherAuRevoir();
                     return;

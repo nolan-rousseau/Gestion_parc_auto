@@ -27,7 +27,7 @@
          </font>
       </Label>
       <Button fx:id="btt_filmPrevious" layoutX="176.0" layoutY="313.0" mnemonicParsing="false" text="&lt;" />
-      <Button fx:id="btt_filmNext" layoutX="404.0" layoutY="313.0" mnemonicParsing="false" onAction="#filmNext" text="&gt;" />
+<!--      <Button fx:id="btt_filmNext" layoutX="404.0" layoutY="313.0" mnemonicParsing="false" onAction="#filmNext" text="&gt;" />-->
       <Button layoutX="200.0" layoutY="313.0" mnemonicParsing="false" text="sauvegarder" />
       <Button layoutX="281.0" layoutY="313.0" mnemonicParsing="false" text="ajouter" />
       <Button layoutX="334.0" layoutY="313.0" mnemonicParsing="false" text="supprimer" />

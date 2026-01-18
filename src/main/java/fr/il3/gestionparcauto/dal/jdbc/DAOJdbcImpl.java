@@ -15,7 +15,7 @@ public class DAOJdbcImpl {
     private static final String USER = JdbcTools.getProperty("username");
     private static final String PASSWORD = ""; //JdbcTools.getProperty("password");
 
-    public static void main() {
+    private static void main() {
         try {
             Files.deleteIfExists(Paths.get("./src/main/resources/database/mydb.mv.db"));
 

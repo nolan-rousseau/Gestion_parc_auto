@@ -9,8 +9,11 @@ public class JdbcTools {
 
     static {
         p = new Properties();
-        try {
-            p.load(JdbcTools.class.getResourceAsStream("settings.properties"));
+        try (var is = JdbcTools.class.getResourceAsStream("/database/settings.properties")) {
+            if (is == null) {
+                throw new IOException("Fichier settings.properties introuvable.");
+            }
+            p.load(is);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,7 +1,5 @@
 package fr.il3.gestionparcauto.ihm.javafx;
 
-import fr.il3.gestionparcauto.bll.ParcController;
-import fr.il3.gestionparcauto.bo.Parc;
 import fr.il3.gestionparcauto.utils.DalException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -26,31 +24,31 @@ public class EcranController {
 
     int indexFilm = 0;
 
-    public Parc getFilm(int index) {
-        try {
-            return ParcController.getController().selectFilm().get(index);
-        } catch (DalException e) {
-            afficherException(e.getMessage());
-            return null;
-        }
-    }
+//    public Parc getFilm(int index) {
+//        try {
+//            return ParcController.getController().selectFilm().get(index);
+//        } catch (DalException e) {
+//            afficherException(e.getMessage());
+//            return null;
+//        }
+//    }
 
-    @FXML
-    public void filmNext(javafx.event.ActionEvent event) {
-        indexFilm++;
-        afficherFilm(getFilm(indexFilm));
-    }
+//    @FXML
+//    public void filmNext(javafx.event.ActionEvent event) {
+//        indexFilm++;
+//        afficherFilm(getFilm(indexFilm));
+//    }
 
-    public void afficherFilm(Parc parc) {
-        if (parc != null) {
-            tb_filmTitle.setText(parc.getTitre());
-            tb_filmDuree.setText(Integer.toString(parc.getDuree()));
-            tb_filmRealisateur.setText(parc.getRealisateur());
-            tb_filmAnnee.setText(Integer.toString(parc.getAnnee()));
-        } else  {
-            afficherException("Le film n'existe pas");
-        }
-    }
+//    public void afficherFilm(Parc parc) {
+//        if (parc != null) {
+//            tb_filmTitle.setText(parc.getTitre());
+//            tb_filmDuree.setText(Integer.toString(parc.getDuree()));
+//            tb_filmRealisateur.setText(parc.getRealisateur());
+//            tb_filmAnnee.setText(Integer.toString(parc.getAnnee()));
+//        } else  {
+//            afficherException("Le film n'existe pas");
+//        }
+//    }
 
     private void afficherException(String txt) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
