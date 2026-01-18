@@ -17,8 +17,8 @@ public class Ecran extends Application {
             Pane root = loader.load();
 
 
-            EcranController controller = loader.getController();
-            controller.afficherFilm(controller.getFilm(controller.indexFilm));
+//            EcranController controller = loader.getController();
+//            controller.afficherFilm(controller.getFilm(controller.indexFilm));
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
