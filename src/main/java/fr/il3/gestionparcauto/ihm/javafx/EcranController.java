@@ -36,7 +36,7 @@ public class EcranController {
 
 
     @FXML
-    private void initialize() throws DalException {
+    public void initialize() throws DalException {
         // get data lists from database
         List<Vehicle> vehicles = VehicleController.getController().selectVehicle();
         ObservableList<Vehicle> vehicleList = FXCollections.observableArrayList(vehicles);
@@ -93,7 +93,7 @@ public class EcranController {
 
     @FXML
     private void CreateAssignment(ActionEvent event) {
-        OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Assignment.fxml");
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Assignment.fxml", this);
     }
 
     @FXML
@@ -106,11 +106,11 @@ public class EcranController {
 
     @FXML
     private void AddEmployee(ActionEvent event) {
-        OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Employee.fxml");
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Employee.fxml", this);
     }
     @FXML
     private void ModifyEmployee(ActionEvent event) {
-        OpenWindow("/fr/il3/gestionparcauto/fxml/Edit_Employee.fxml");
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Edit_Employee.fxml", this);
     }
 
     @FXML
@@ -122,13 +122,14 @@ public class EcranController {
     }
 
     @FXML
-    private void AddVehicle(ActionEvent event) {
-        OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Vehicle.fxml");
+    private void AddVehicle(ActionEvent event) throws DalException {
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Vehicle.fxml", this);
+        initialize();
     }
 
     @FXML
     private void ModifyVehicle(ActionEvent event) {
-        OpenWindow("/fr/il3/gestionparcauto/fxml/Edit_Vehicle.fxml");
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Edit_Vehicle.fxml", this);
     }
 
     @FXML

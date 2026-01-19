@@ -1,11 +1,14 @@
 package fr.il3.gestionparcauto.bll;
 
+import fr.il3.gestionparcauto.bo.Brand;
 import fr.il3.gestionparcauto.bo.Employee;
 import fr.il3.gestionparcauto.bo.Model;
 import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.utils.DalException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ModelController {
     private static ModelController modelController;
@@ -54,5 +57,19 @@ public class ModelController {
         if (model.getBrand().getId() <= 0) {
             throw new DalException("La marque du modèle ne peut pas être vide.");
         }
+    }
+
+    public Model getModelFromName(String name) throws DalException {
+        Model specificModel = selectModel().stream()
+                .filter(b -> {
+                    try {
+                        return Objects.equals(b.getName(), name);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .findFirst()
+                .orElse(null);
+        return specificModel;
     }
 }
