@@ -1,7 +1,6 @@
 package fr.il3.gestionparcauto.dal.jdbc;
 
 import fr.il3.gestionparcauto.bo.Employee;
-import fr.il3.gestionparcauto.bo.Model;
 import fr.il3.gestionparcauto.bo.Service;
 import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.dal.EmployeeDAO;
