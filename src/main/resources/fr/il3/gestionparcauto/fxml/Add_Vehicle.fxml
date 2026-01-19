@@ -4,14 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.il3.gestionparcauto.ihm.javafx.Add_VehicleController">
    <children>
-      <VBox prefHeight="400.0" prefWidth="300.0">
+      <VBox prefHeight="354.0" prefWidth="300.0">
          <children>
             <HBox prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Button mnemonicParsing="false" text="Ajouter véhicule" />
-               </children>
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </VBox.margin>
@@ -27,18 +24,21 @@
                   <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Marque :" />
                   <Label text="Modèle :" GridPane.rowIndex="1" />
                   <Label text="Immatriculation :" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label layoutX="10.0" layoutY="210.0" text="Kilométrage :" GridPane.rowIndex="4" />
-                  <Spinner editable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Spinner id="spinnerMileage" fx:id="spinnerMileage" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="comboBrand" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="comboModel" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label layoutX="10.0" layoutY="167.0" text="Date d'immatriculation :" GridPane.rowIndex="3" />
-                  <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="textfieldRegistration" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <DatePicker fx:id="datepickerRegistrationDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="textfieldComment" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="Commentaire :" GridPane.rowIndex="5" />
                </children>
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -49,5 +49,6 @@
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
       </VBox>
+      <Button fx:id="btnAddVehicle" layoutX="7.0" layoutY="361.0" mnemonicParsing="false" onAction="#AddVehicle" prefHeight="25.0" prefWidth="287.0" text="Ajouter véhicule" />
    </children>
 </Pane>

@@ -18,7 +18,7 @@ public class OpenWindow {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
-            ihmException.showException(e.getMessage());
+            ihmWindowBox.showException(e.getMessage());
         }
     }
 }

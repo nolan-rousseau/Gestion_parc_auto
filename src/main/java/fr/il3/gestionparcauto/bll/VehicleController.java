@@ -48,7 +48,7 @@ public class VehicleController {
     }
 
     private void verifObjectVehicle(Vehicle vehicle) throws DalException {
-        if(vehicle.getRegistration() == null){
+        if(vehicle.getRegistration().isEmpty()){
             throw new DalException("L'immatriculation du véhicule ne peut pas être vide.");
         }
         if(vehicle.getModelId() <= 0){
