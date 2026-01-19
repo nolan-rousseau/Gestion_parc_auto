@@ -146,6 +146,7 @@ public class EcranController {
 
     @FXML
     private void ShowStats(ActionEvent event) {
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Stats.fxml", this);
     }
 
     @FXML
