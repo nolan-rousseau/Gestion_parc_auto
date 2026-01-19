@@ -1,10 +1,12 @@
 package fr.il3.gestionparcauto.bll;
 
 import fr.il3.gestionparcauto.bo.Brand;
+import fr.il3.gestionparcauto.bo.Model;
 import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.utils.DalException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class BrandController {
     private static BrandController brandController;
@@ -48,5 +50,19 @@ public class BrandController {
 
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getBrandDAO().deleteBrand(id);
+    }
+
+    public Brand getBrandFromName(String name) throws DalException {
+        Brand specificBrand = selectBrand().stream()
+                .filter(b -> {
+                    try {
+                        return Objects.equals(b.getName(), name);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .findFirst()
+                .orElse(null);
+        return specificBrand;
     }
 }

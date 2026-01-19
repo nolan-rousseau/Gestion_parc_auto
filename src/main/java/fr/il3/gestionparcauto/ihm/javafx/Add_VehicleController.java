@@ -85,10 +85,23 @@ public class Add_VehicleController implements Initializable {
         try {
             Vehicle vehicle = new Vehicle();
 
-            vehicle.setModel(ModelController.getController().getModelFromName(comboModel.getValue()));
             vehicle.setRegistration(textfieldRegistration.getText());
             vehicle.setComment(textfieldComment.getText());
             vehicle.setRegistrationDate(datepickerRegistrationDate.getValue());
+
+            if (checkboxAddModel.isSelected()){
+                Model newModel = new Model();
+                newModel.setBrand(BrandController.getController().getBrandFromName(comboBrand.getValue()));
+                newModel.setName(textfieldNewModel.getText());
+
+                ModelController modelController = new ModelController();
+                modelController.addModel(newModel);
+                newModel = modelController.getModelFromName(textfieldNewModel.getText());
+
+                vehicle.setModel(newModel);
+            } else {
+                vehicle.setModel(ModelController.getController().getModelFromName(comboModel.getValue()));
+            }
 
             if (spinnerMileage.getValue() != null) {
                 vehicle.setMileage(spinnerMileage.getValue().longValue());

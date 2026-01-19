@@ -42,7 +42,7 @@ CREATE TABLE Assignments (
     dateStart DATE NOT NULL,
     dateEnd DATE NOT NULL,
     comment VARCHAR(500),
-    CONSTRAINT FK_Assignment_Vehicle FOREIGN KEY (vehicle_id) REFERENCES Vehicles(id),
-    CONSTRAINT FK_Assignment_Employee FOREIGN KEY (employee_id) REFERENCES Employees(id)
+    CONSTRAINT FK_Assignment_Vehicle FOREIGN KEY (vehicle_id) REFERENCES Vehicles(id) ON DELETE SET NULL,
+    CONSTRAINT FK_Assignment_Employee FOREIGN KEY (employee_id) REFERENCES Employees(id) ON DELETE SET NULL
 );
 
