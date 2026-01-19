@@ -12,7 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -96,8 +99,49 @@ public class EcranController {
         OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Assignment.fxml", this);
     }
 
+    private String escapeCsv(String text) {
+        if (text == null) return "";
+        return text.replace(";", ",")
+                .replace("\n", " ")
+                .replace("\r", "");
+    }
+
     @FXML
     private void ExportAssignments(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exporter les affectations");
+
+        fileChooser.setInitialFileName("export_assignments_" + LocalDate.now() + ".csv");
+
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("CSV (*.csv)", "*.csv")
+        );
+
+        File file = fileChooser.showSaveDialog(null);
+        if (file == null) return;
+
+        try (FileOutputStream fos = new FileOutputStream(file);
+             OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
+             BufferedWriter writer = new BufferedWriter(osw)) {
+
+            writer.write('\ufeff');
+            writer.write("Véhicule;Employé;Début;Fin;Commentaire");
+            writer.newLine();
+
+            for (Assignment a : tableViewAssignments.getItems()) {
+                writer.write(
+                        a.getVehicle().toString() + ";" +
+                                a.getEmployee().toString() + ";" +
+                                a.getDateStart() + ";" +
+                                a.getDateEnd() + ";" +
+                                a.getComment()
+                );
+                writer.newLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -119,6 +163,40 @@ public class EcranController {
 
     @FXML
     private void ExportEmployees(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exporter les agents");
+
+        fileChooser.setInitialFileName("export_employees_" + LocalDate.now() + ".csv");
+
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("CSV (*.csv)", "*.csv")
+        );
+
+        File file = fileChooser.showSaveDialog(null);
+        if (file == null) return;
+
+        try (FileOutputStream fos = new FileOutputStream(file);
+             OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
+             BufferedWriter writer = new BufferedWriter(osw)) {
+
+            writer.write('\ufeff');
+            writer.write("Prénom;Nom;Email;Téléphone;Service");
+            writer.newLine();
+
+            for (Employee a : listViewEmployees.getItems()) {
+                writer.write(
+                        a.getFirstName() + ";" +
+                                a.getLastName() + ";" +
+                                a.getEmail() + ";" +
+                                a.getPhone() + ";" +
+                                a.getService()
+                );
+                writer.newLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -138,5 +216,39 @@ public class EcranController {
 
     @FXML
     private void ExportVehicles(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exporter les véhicules");
+
+        fileChooser.setInitialFileName("export_vehicles_" + LocalDate.now() + ".csv");
+
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("CSV (*.csv)", "*.csv")
+        );
+
+        File file = fileChooser.showSaveDialog(null);
+        if (file == null) return;
+
+        try (FileOutputStream fos = new FileOutputStream(file);
+             OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
+             BufferedWriter writer = new BufferedWriter(osw)) {
+
+            writer.write('\ufeff');
+            writer.write("Marque;Modèle;Immatriculation;Date d'immatriculation;Kilométrage");
+            writer.newLine();
+
+            for (Vehicle a : listViewVehicles.getItems()) {
+                writer.write(
+                        a.getModel().getBrand() + ";" +
+                                a.getModel() + ";" +
+                                a.getRegistration() + ";" +
+                                a.getRegistrationDate() + ";" +
+                                a.getMileage()
+                );
+                writer.newLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
