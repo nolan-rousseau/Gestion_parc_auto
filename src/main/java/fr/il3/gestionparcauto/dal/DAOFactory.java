@@ -2,6 +2,7 @@ package fr.il3.gestionparcauto.dal;
 
 import fr.il3.gestionparcauto.bll.AssignmentController;
 import fr.il3.gestionparcauto.dal.jdbc.*;
+import fr.il3.gestionparcauto.dal.jdbc.utils.StatsDAOJdbcImpl;
 
 public class DAOFactory {
 
@@ -19,4 +20,5 @@ public class DAOFactory {
     public EmployeeDAOJdbcImpl getEmployeeDAO(){ return new EmployeeDAOJdbcImpl(); }
     public VehicleDAOJdbcImpl getVehicleDAO(){ return new VehicleDAOJdbcImpl(); }
     public AssignmentDAOJdbcImpl getAssignmentDAO() { return new AssignmentDAOJdbcImpl(); }
+    public StatsDAOJdbcImpl  getStatsDAO(){ return new StatsDAOJdbcImpl(); }
 }
