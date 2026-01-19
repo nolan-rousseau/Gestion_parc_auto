@@ -51,7 +51,7 @@ public class VehicleDAOJdbcImpl implements VehicleDAO {
                 vehicle.setId(rs.getInt("id"));
                 vehicle.setRegistration(rs.getString("registration"));
                 vehicle.setMileage(rs.getLong("mileage"));
-                vehicle.setRegistrationDate((LocalDate) rs.getObject("registrationDate"));
+                vehicle.setRegistrationDate(rs.getDate("registrationDate").toLocalDate());
                 vehicle.setComment(rs.getString("comment"));
 
                 DAOFactory daoFactory = new DAOFactory();

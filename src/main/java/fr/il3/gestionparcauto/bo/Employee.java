@@ -23,7 +23,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return id + ", " + firstName + ", " + lastName + ", " + email + ", " + phone + ", " + serviceId;
+        return firstName + " " + lastName + " (" + serviceId + ")";
     }
 
     public int getId() {

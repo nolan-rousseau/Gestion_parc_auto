@@ -60,4 +60,11 @@ public class AssignmentController {
             throw new DalException("La date de fin de l'affectation ne peut pas être vide.");
         }
     }
+
+    private ArrayList getAssignment(int id) throws DalException {
+        ArrayList<Assignment> assignment = new ArrayList<>();
+        DAOFactory daoFactory = new DAOFactory();
+
+        return assignment;
+    }
 }

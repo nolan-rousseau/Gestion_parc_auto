@@ -51,7 +51,7 @@ public class ModelController {
         if (model.getName() == null) {
             throw new DalException("Le nom du modèle ne peut pas être vide.");
         }
-        if (model.getBrand() == null) {
+        if (model.getBrand().getId() <= 0) {
             throw new DalException("La marque du modèle ne peut pas être vide.");
         }
     }
