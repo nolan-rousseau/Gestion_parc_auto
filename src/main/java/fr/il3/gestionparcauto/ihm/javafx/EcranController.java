@@ -203,7 +203,6 @@ public class EcranController {
     @FXML
     private void AddVehicle(ActionEvent event) throws DalException {
         OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Vehicle.fxml", this);
-        initialize();
     }
 
     @FXML

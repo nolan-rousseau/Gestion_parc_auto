@@ -40,13 +40,8 @@ public class DAOJdbcImpl {
             }
             System.out.println("Base de données : Enregistrements créées");
 
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM Employees;");
-//            System.out.println("Données dans la table Employees :");
-//            while (rs.next()) {
-//                System.out.println(rs.getInt("id") + " - " + rs.getString("firstname"));
-//            }
             conn.close();
-            h2Console.main();
+            h2Console.start();
         } catch (Exception e) {
             e.printStackTrace();
         }

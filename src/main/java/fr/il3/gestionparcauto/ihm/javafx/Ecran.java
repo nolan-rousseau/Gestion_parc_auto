@@ -1,6 +1,8 @@
 package fr.il3.gestionparcauto.ihm.javafx;
 
 import fr.il3.gestionparcauto.dal.jdbc.DAOJdbcImpl;
+import fr.il3.gestionparcauto.dal.jdbc.h2Console;
+import fr.il3.gestionparcauto.ihm.javafx.utils.ihmWindowBox;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,10 +27,18 @@ public class Ecran extends Application {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-//            controller.afficherFilm(controller.getFilm(controller.indexFilm));
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
+
+            stage.setOnHidden(e -> {
+                try {
+                    h2Console.stop();
+                } catch (Exception ex) {
+                    ihmWindowBox.showException(ex.getMessage());
+                }
+            });
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

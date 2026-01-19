@@ -1,14 +1,19 @@
 package fr.il3.gestionparcauto.ihm.javafx;
 
+import fr.il3.gestionparcauto.dal.jdbc.DAOJdbcImpl;
+import fr.il3.gestionparcauto.dal.jdbc.JdbcTools;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.fxml.Initializable;
-
+import java.sql.Connection;
+import java.sql.Statement;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.sql.*;
+
 
 
 public class StatsController {
@@ -17,27 +22,27 @@ public class StatsController {
     @FXML private ListView<String> listViewBiggestUsers;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         loadStatistics();
     }
 
-    private void loadStatistics() {
+    private void loadStatistics() throws SQLException {
         // Stats mileage
-        fillList(conn,
+        fillList(DAOJdbcImpl.getConnection(),
                 "SELECT b.name, m.name, v.mileage FROM Vehicles v " +
                         "JOIN Models m ON v.model_id = m.id JOIN Brands b ON m.brand_id = b.id " +
                         "ORDER BY v.mileage DESC LIMIT 5",
                 listViewMileage, "%s %s (%d km)");
 
         // Stats most used
-        fillList(conn,
+        fillList(DAOJdbcImpl.getConnection(),
                 "SELECT b.name, m.name, COUNT(a.id) FROM Assignments a " +
                         "JOIN Vehicles v ON a.vehicle_id = v.id JOIN Models m ON v.model_id = m.id " +
                         "JOIN Brands b ON m.brand_id = b.id GROUP BY v.id ORDER BY 3 DESC LIMIT 5",
                 listViewMostUsed, "%s %s (%d fois)");
 
         // Stats biggest user
-        fillList(conn,
+        fillList(DAOJdbcImpl.getConnection(),
                 "SELECT e.firstname, e.lastname, COUNT(a.id) FROM Assignments a " +
                         "JOIN Employees e ON a.employee_id = e.id GROUP BY e.id ORDER BY 3 DESC LIMIT 5",
                 listViewBiggestUsers, "%s %s (%d réservations)");
