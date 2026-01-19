@@ -48,8 +48,8 @@ public class AssignmentDAOJdbcImpl implements AssignmentDAO {
                 assignment.setId(rs.getInt("id"));
                 assignment.setVehicleId(rs.getInt("vehicle_id"));
                 assignment.setEmployeeId(rs.getInt("employee_id"));
-                assignment.setDateStart((LocalDate) rs.getObject("dateStart"));
-                assignment.setDateEnd((LocalDate) rs.getObject("dateEnd"));
+                assignment.setDateStart(rs.getDate("dateStart").toLocalDate());
+                assignment.setDateEnd(rs.getDate("dateEnd").toLocalDate());
                 assignment.setComment(rs.getString("comment"));
 
                 assignments.add(assignment);
