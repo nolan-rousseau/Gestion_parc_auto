@@ -6,18 +6,28 @@ import fr.il3.gestionparcauto.bo.Assignment;
 import fr.il3.gestionparcauto.bll.VehicleController;
 import fr.il3.gestionparcauto.bo.Vehicle;
 import fr.il3.gestionparcauto.bo.Employee;
+import fr.il3.gestionparcauto.ihm.javafx.utils.OpenWindow;
+import fr.il3.gestionparcauto.ihm.javafx.utils.ihmWindowBox;
 import fr.il3.gestionparcauto.utils.DalException;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static fr.il3.gestionparcauto.ihm.javafx.utils.OpenWindow.OpenWindow;
 
@@ -51,7 +61,14 @@ public class EcranController {
         ObservableList<Assignment> AssignmentList = FXCollections.observableArrayList(assignments);
 
         // initialize table columns
-        vehicleCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleStringProperty(cell.getValue().getVehicle().toString()));
+        vehicleCol.setCellValueFactory(cell -> {
+            Assignment a = cell.getValue();
+            if (a.getVehicle() != null) {
+                return new SimpleStringProperty(a.getVehicle().toString());
+            } else {
+                return new SimpleStringProperty("[Véhicule supprimé]");
+            }
+        });
         employeeCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleStringProperty(cell.getValue().getEmployee().toString()));
         startCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleObjectProperty<>(cell.getValue().getDateStart()));
         endCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleObjectProperty<>(cell.getValue().getDateEnd()));
@@ -207,11 +224,62 @@ public class EcranController {
 
     @FXML
     private void ModifyVehicle(ActionEvent event) {
-        OpenWindow("/fr/il3/gestionparcauto/fxml/Edit_Vehicle.fxml", this);
+        Vehicle vehicleSelected = listViewVehicles.getSelectionModel().getSelectedItem();
+
+        if (vehicleSelected == null) {
+            ihmWindowBox.showInformation("Veuillez sélectionner un véhicule à modifier.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/il3/gestionparcauto/fxml/Edit_Vehicle.fxml"));
+            Parent root = loader.load();
+
+            Edit_VehicleController controller = loader.getController();
+            controller.UpdateControlsWithVehicle(vehicleSelected);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+
+            stage.setOnHidden(e -> {
+                try {
+                    this.initialize();
+                } catch (DalException ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            stage.show();
+        } catch (Exception e) {
+            ihmWindowBox.showException("Erreur lors de l'ouverture de la fenêtre : " + e.getMessage());
+        }
     }
 
     @FXML
     private void DeleteVehicle(ActionEvent event) {
+        Vehicle vehicleSelected = listViewVehicles.getSelectionModel().getSelectedItem();
+
+        if (vehicleSelected == null) {
+            ihmWindowBox.showInformation("Veuillez sélectionner un véhicule à supprimer.");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText("Suppression du véhicule : " + vehicleSelected.toString());
+        alert.setContentText("Êtes-vous sûr de vouloir supprimer ce véhicule ?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                VehicleController.getController().deleteVehicle(vehicleSelected.getId());
+                ihmWindowBox.showInformation("Le véhicule a été supprimé avec succès.");
+                initialize();
+            } catch (Exception e) {
+                ihmWindowBox.showException(e.getMessage());
+            }
+        }
     }
 
     @FXML

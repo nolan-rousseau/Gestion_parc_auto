@@ -78,13 +78,12 @@ public class Edit_VehicleController implements Initializable {
         comboModel.disableProperty().bind(checkboxAddModel.selectedProperty());
 
         LoadAll();
-        UpdateControlsWithVehicle(vehicleToEdit);
     }
 
     @FXML
     private void UpdateVehicle(ActionEvent event) {
         try {
-            Vehicle vehicle = new Vehicle();
+            Vehicle vehicle = vehicleToEdit;
 
             vehicle.setRegistration(textfieldRegistration.getText());
             vehicle.setComment(textfieldComment.getText());
@@ -113,7 +112,7 @@ public class Edit_VehicleController implements Initializable {
             ClearValues();
             ihmWindowBox.showInformation("Le véhicule à été modifié avec succès.");
             LoadAll();
-            UpdateControlsWithVehicle(vehicleToEdit);
+            UpdateControlsWithVehicle(vehicle);
         } catch (Exception e){
             ihmWindowBox.showException(e.getMessage());
         }
@@ -171,11 +170,20 @@ public class Edit_VehicleController implements Initializable {
         spinnerMileage.getValueFactory().setValue(0);
     }
 
-    private void UpdateControlsWithVehicle(Vehicle vehicleToEdit) {
-        comboModel.getItems() == vehicleToEdit.getModel();
-        textfieldRegistration.setText(vehicleToEdit.getRegistration());
-        textfieldComment.setText(vehicleToEdit.getComment());
-        datepickerRegistrationDate.setValue(vehicleToEdit.getRegistrationDate());
-        spinnerMileage.getValueFactory().setValue(vehicleToEdit.getMileage());
+    protected void UpdateControlsWithVehicle(Vehicle vehicle) {
+        this.vehicleToEdit = vehicle;
+        if (vehicle != null) {
+            if (vehicle.getModel() != null) {
+                comboModel.setValue(vehicle.getModel().getName());
+            }
+
+            textfieldRegistration.setText(vehicle.getRegistration());
+            textfieldComment.setText(vehicle.getComment());
+            datepickerRegistrationDate.setValue(vehicle.getRegistrationDate());
+
+            if (vehicle.getMileage() != null) {
+                spinnerMileage.getValueFactory().setValue(vehicle.getMileage().intValue());
+            }
+        }
     }
 }
