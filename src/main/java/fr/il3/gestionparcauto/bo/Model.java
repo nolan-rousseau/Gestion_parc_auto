@@ -2,15 +2,15 @@ package fr.il3.gestionparcauto.bo;
 
 public class Model {
     private int id;
-    private int brandId;
     private String name;
+    private Brand brand;
 
     public Model(){};
 
-    public Model(int id, String name, int brandId) {
+    public Model(int id, String name, Brand brand) {
         this.id = id;
         this.name = name;
-        this.brandId = brandId;
+        this.brand = brand;
     }
 
     @Override
@@ -30,15 +30,16 @@ public class Model {
         this.name = name;
     }
 
-    public int getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(int brandId) {
-        this.brandId = brandId;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
 }

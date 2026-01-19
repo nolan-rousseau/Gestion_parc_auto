@@ -1,7 +1,10 @@
 package fr.il3.gestionparcauto.dal.jdbc;
 
+import fr.il3.gestionparcauto.bo.Brand;
 import fr.il3.gestionparcauto.bo.Model;
+import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.dal.ModelDAO;
+import fr.il3.gestionparcauto.dal.jdbc.BrandDAOJdbcImpl;
 import fr.il3.gestionparcauto.utils.DalException;
 
 import java.sql.*;
@@ -19,7 +22,7 @@ public class ModelDAOJdbcImpl implements ModelDAO {
         try{
             Connection con = DAOJdbcImpl.getConnection();
             PreparedStatement stmt = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, model.getBrandId());
+            stmt.setInt(1, model.getBrand().getId());
             stmt.setString(2, model.getName());
 
             stmt.executeUpdate();
@@ -42,9 +45,15 @@ public class ModelDAOJdbcImpl implements ModelDAO {
             while (rs.next()) {
                 model = new Model();
                 model.setId(rs.getInt("id"));
-                model.setBrandId(rs.getInt("brand_id"));
                 model.setName(rs.getString("name"));
 
+                DAOFactory daoFactory = new DAOFactory();
+                ArrayList<Brand> allBrands = daoFactory.getBrandDAO().selectAll();
+                Brand specificBrand = allBrands.stream()
+                        .filter(b -> b.getId() == 4)
+                        .findFirst()
+                        .orElse(null);
+                model.setBrand(specificBrand);
                 models.add(model);
             }
         }catch (SQLException e) {
@@ -60,7 +69,7 @@ public class ModelDAOJdbcImpl implements ModelDAO {
             Connection con = DAOJdbcImpl.getConnection();
             PreparedStatement stmt = con.prepareStatement(UPDATE)) {
 
-            stmt.setInt(1, model.getBrandId());
+            stmt.setInt(1, model.getBrand().getId());
             stmt.setString(2, model.getName());
             stmt.setInt(3, model.getId());
 

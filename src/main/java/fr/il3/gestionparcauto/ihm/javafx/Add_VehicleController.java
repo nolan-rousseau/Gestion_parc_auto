@@ -62,7 +62,9 @@ public class Add_VehicleController implements Initializable {
 
             VehicleController vehicleController = new VehicleController();
             vehicleController.addVehicle(vehicle);
+            ClearValues();
             ihmWindowBox.showInformation("Le véhicule à été créé avec succès.");
+            LoadAll();
         } catch (Exception e){
             ihmWindowBox.showException(e.getMessage());
         }
@@ -71,7 +73,7 @@ public class Add_VehicleController implements Initializable {
     private void LoadAll() {
         try {
             ModelController.getController().selectModel().forEach(Model -> {
-                comboModel.getItems().add(Model.getName());
+                comboModel.getItems().add(Model.getName() + Model.getId());
             });
             BrandController.getController().selectBrand().forEach(Brand -> {
                 comboBrand.getItems().add(Brand.getName());
@@ -79,5 +81,14 @@ public class Add_VehicleController implements Initializable {
         } catch (DalException e) {
             ihmWindowBox.showException("Impossible de charger les données : " + e.getMessage());
         }
+    }
+
+    private void ClearValues() {
+        comboBrand.getSelectionModel().clearSelection();
+        comboModel.getSelectionModel().clearSelection();
+        textfieldRegistration.clear();
+        textfieldComment.clear();
+        datepickerRegistrationDate.setValue(null);
+        spinnerMileage.getValueFactory().setValue(0);
     }
 }
