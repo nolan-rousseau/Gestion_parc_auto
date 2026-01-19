@@ -81,7 +81,6 @@ public class EcranController {
         masterEmployeeList.stream().map(e -> e.getService().getName()).distinct().forEach(choiceBoxService.getItems()::add);
         choiceBoxService.getSelectionModel().selectFirst();
 
-        // initialize table columns
         vehicleCol.setCellValueFactory(cell -> {
             Assignment a = cell.getValue();
             if (a.getVehicle() != null) {
@@ -90,11 +89,17 @@ public class EcranController {
                 return new SimpleStringProperty("[Véhicule supprimé]");
             }
         });
-        employeeCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleStringProperty(cell.getValue().getEmployee().toString()));
+        employeeCol.setCellValueFactory(cell -> {
+            Assignment a = cell.getValue();
+            if (a.getEmployee() != null) {
+                return new SimpleStringProperty(a.getEmployee().toString());
+            } else {
+                return new SimpleStringProperty("[Employé supprimé]");
+            }
+        });
         startCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleObjectProperty<>(cell.getValue().getDateStart()));
         endCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleObjectProperty<>(cell.getValue().getDateEnd()));
 
-        // update text fields
         tableViewAssignments
                 .getSelectionModel()
                 .selectedItemProperty()
@@ -221,6 +226,28 @@ public class EcranController {
 
     @FXML
     private void DeleteEmployee(ActionEvent event) {
+        Employee employeeSelected = listViewEmployees.getSelectionModel().getSelectedItem();
+
+        if (employeeSelected == null) {
+            ihmWindowBox.showInformation("Veuillez sélectionner un employé à supprimer.");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText("Suppression de l'employé : " + employeeSelected.toString());
+        alert.setContentText("Êtes-vous sûr de vouloir supprimer cet employé ?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                EmployeeController.getController().deleteEmployee(employeeSelected.getId());
+                ihmWindowBox.showInformation("L'employé a été supprimé avec succès.");
+                initialize();
+            } catch (Exception e) {
+                ihmWindowBox.showException(e.getMessage());
+            }
+        }
     }
 
     @FXML
@@ -264,7 +291,6 @@ public class EcranController {
     @FXML
     private void AddVehicle(ActionEvent event) throws DalException {
         OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Vehicle.fxml", this);
-        initialize();
     }
 
     @FXML
