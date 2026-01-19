@@ -1,6 +1,9 @@
 package fr.il3.gestionparcauto.dal.jdbc;
 
+import fr.il3.gestionparcauto.bo.Brand;
+import fr.il3.gestionparcauto.bo.Model;
 import fr.il3.gestionparcauto.bo.Vehicle;
+import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.dal.VehicleDAO;
 import fr.il3.gestionparcauto.utils.DalException;
 
@@ -21,7 +24,7 @@ public class VehicleDAOJdbcImpl implements VehicleDAO {
             Connection con = DAOJdbcImpl.getConnection();
             PreparedStatement stmt = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, vehicle.getRegistration());
-            stmt.setInt(2, vehicle.getModelId());
+            stmt.setInt(2, vehicle.getModel().getId());
             stmt.setLong(3, vehicle.getMileage());
             stmt.setObject(4, vehicle.getRegistrationDate());
             stmt.setString(5, vehicle.getComment());
@@ -47,10 +50,23 @@ public class VehicleDAOJdbcImpl implements VehicleDAO {
                 vehicle = new Vehicle();
                 vehicle.setId(rs.getInt("id"));
                 vehicle.setRegistration(rs.getString("registration"));
-                vehicle.setModelId(rs.getInt("model_id"));
                 vehicle.setMileage(rs.getLong("mileage"));
                 vehicle.setRegistrationDate((LocalDate) rs.getObject("registrationDate"));
                 vehicle.setComment(rs.getString("comment"));
+
+                DAOFactory daoFactory = new DAOFactory();
+                ArrayList<Model> allModels = daoFactory.getModelDAO().selectAll();
+                Model specificModel = allModels.stream()
+                        .filter(b -> {
+                            try {
+                                return b.getId() == rs.getInt("model_id");
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                        })
+                        .findFirst()
+                        .orElse(null);
+                vehicle.setModel(specificModel);
 
                 vehicles.add(vehicle);
             }
@@ -68,7 +84,7 @@ public class VehicleDAOJdbcImpl implements VehicleDAO {
             PreparedStatement stmt = con.prepareStatement(UPDATE)) {
 
             stmt.setString(1, vehicle.getRegistration());
-            stmt.setInt(2, vehicle.getModelId());
+            stmt.setInt(2, vehicle.getModel().getId());
             stmt.setLong(3, vehicle.getMileage());
             stmt.setObject(4, vehicle.getRegistrationDate());
             stmt.setString(5, vehicle.getComment());

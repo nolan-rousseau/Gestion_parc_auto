@@ -51,7 +51,8 @@ public class Add_VehicleController implements Initializable {
     private void AddVehicle(ActionEvent event) {
         try {
             Vehicle vehicle = new Vehicle();
-            vehicle.setModelId(2);
+
+            vehicle.setModel(ModelController.getController().selectModel().getFirst());
             vehicle.setRegistration(textfieldRegistration.getText());
             vehicle.setComment(textfieldComment.getText());
             vehicle.setRegistrationDate(datepickerRegistrationDate.getValue());

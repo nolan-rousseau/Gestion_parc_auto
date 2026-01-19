@@ -50,7 +50,13 @@ public class ModelDAOJdbcImpl implements ModelDAO {
                 DAOFactory daoFactory = new DAOFactory();
                 ArrayList<Brand> allBrands = daoFactory.getBrandDAO().selectAll();
                 Brand specificBrand = allBrands.stream()
-                        .filter(b -> b.getId() == 4)
+                        .filter(b -> {
+                            try {
+                                return b.getId() == rs.getInt("brand_id");
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                        })
                         .findFirst()
                         .orElse(null);
                 model.setBrand(specificBrand);
