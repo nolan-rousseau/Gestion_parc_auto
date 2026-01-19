@@ -7,7 +7,6 @@ module fr.il3.gestionparcauto {
     requires com.h2database;
     requires javafx.graphics;
     requires javafx.base;
-    //requires fr.il3.gestionparcauto;
     requires java.desktop;
 
     exports fr.il3.gestionparcauto.ihm.javafx;
