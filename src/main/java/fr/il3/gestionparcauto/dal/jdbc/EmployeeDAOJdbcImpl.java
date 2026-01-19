@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public class EmployeeDAOJdbcImpl implements EmployeeDAO {
 
     private final String INSERT = "INSERT INTO Employees (firstname, lastname, service_id, phone, mail) VALUES (?, ?, ?, ?, ?) ";
-    private final String SELECT_ALL = "SELECT * FROM Employee ";
-    private final String UPDATE = "UPDATE Employee SET firstname = ?, lastname = ?, service_id = ?, phone = ?, mail = ? WHERE id = ?";
-    private final String DELETE = "DELETE FROM Employee WHERE id = ?";
+    private final String SELECT_ALL = "SELECT * FROM Employees ";
+    private final String UPDATE = "UPDATE Employees SET firstname = ?, lastname = ?, service_id = ?, phone = ?, mail = ? WHERE id = ?";
+    private final String DELETE = "DELETE FROM Employees WHERE id = ?";
 
     @Override
     public void addEmployee(Employee employee) throws DalException {
@@ -47,7 +47,7 @@ public class EmployeeDAOJdbcImpl implements EmployeeDAO {
                 employee.setId(rs.getInt("id"));
                 employee.setFirstName(rs.getString("firstname"));
                 employee.setLastName(rs.getString("lastname"));
-                employee.setEmail(rs.getString("email"));
+                employee.setEmail(rs.getString("mail"));
                 employee.setPhone(rs.getString("phone"));
                 employee.setServiceId(rs.getInt("service_id"));
 

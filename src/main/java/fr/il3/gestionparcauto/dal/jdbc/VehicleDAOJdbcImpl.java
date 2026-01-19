@@ -49,7 +49,7 @@ public class VehicleDAOJdbcImpl implements VehicleDAO {
                 vehicle.setRegistration(rs.getString("registration"));
                 vehicle.setModelId(rs.getInt("model_id"));
                 vehicle.setMileage(rs.getLong("mileage"));
-                vehicle.setRegistrationDate((LocalDate) rs.getObject("registrationDate"));
+                vehicle.setRegistrationDate(rs.getDate("registrationDate").toLocalDate());
                 vehicle.setComment(rs.getString("comment"));
 
                 vehicles.add(vehicle);

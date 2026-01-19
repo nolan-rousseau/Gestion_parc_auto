@@ -196,7 +196,7 @@
                         <Insets bottom="4.0" left="8.0" right="8.0" />
                      </VBox.margin>
                   </HBox>
-                  <ListView prefWidth="200.0">
+                  <ListView fx:id="listViewVehicles" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" />
                      </VBox.margin>
@@ -230,10 +230,12 @@
                         <Insets bottom="4.0" left="8.0" right="8.0" />
                      </VBox.margin>
                   </HBox>
-                  <TableView prefWidth="200.0">
+                  <TableView fx:id="tableViewAssignments" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="vehicleCol" text="Véhicule" />
+                        <TableColumn fx:id="employeeCol" text="Employé" />
+                        <TableColumn fx:id="startCol" text="Début" />
+                        <TableColumn fx:id="endCol" text="Fin" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" />
@@ -268,7 +270,7 @@
                         <Insets bottom="4.0" left="8.0" right="8.0" />
                      </VBox.margin>
                   </HBox>
-                  <ListView prefWidth="200.0">
+                  <ListView fx:id="listViewAgents" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" />
                      </VBox.margin>

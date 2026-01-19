@@ -25,7 +25,7 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return id + ", " + registration + ", " + mileage + ", " + registrationDate + ", " + comment + ", " + modelId;
+        return modelId + " (" + registration + ")";
     }
 
     public int getId() {
