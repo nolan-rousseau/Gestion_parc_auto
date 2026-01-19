@@ -12,14 +12,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class Add_VehicleController implements Initializable {
+public class Edit_VehicleController implements Initializable {
+
+    private Vehicle vehicleToEdit;
 
     @FXML
     private ComboBox<String> comboBrand;
@@ -78,10 +78,11 @@ public class Add_VehicleController implements Initializable {
         comboModel.disableProperty().bind(checkboxAddModel.selectedProperty());
 
         LoadAll();
+        UpdateControlsWithVehicle(vehicleToEdit);
     }
 
     @FXML
-    private void AddVehicle(ActionEvent event) {
+    private void UpdateVehicle(ActionEvent event) {
         try {
             Vehicle vehicle = new Vehicle();
 
@@ -108,10 +109,11 @@ public class Add_VehicleController implements Initializable {
             }
 
             VehicleController vehicleController = new VehicleController();
-            vehicleController.addVehicle(vehicle);
+            vehicleController.updateVehicle(vehicle);
             ClearValues();
-            ihmWindowBox.showInformation("Le véhicule à été créé avec succès.");
+            ihmWindowBox.showInformation("Le véhicule à été modifié avec succès.");
             LoadAll();
+            UpdateControlsWithVehicle(vehicleToEdit);
         } catch (Exception e){
             ihmWindowBox.showException(e.getMessage());
         }
@@ -167,5 +169,13 @@ public class Add_VehicleController implements Initializable {
         textfieldComment.clear();
         datepickerRegistrationDate.setValue(null);
         spinnerMileage.getValueFactory().setValue(0);
+    }
+
+    private void UpdateControlsWithVehicle(Vehicle vehicleToEdit) {
+        comboModel.getItems() == vehicleToEdit.getModel();
+        textfieldRegistration.setText(vehicleToEdit.getRegistration());
+        textfieldComment.setText(vehicleToEdit.getComment());
+        datepickerRegistrationDate.setValue(vehicleToEdit.getRegistrationDate());
+        spinnerMileage.getValueFactory().setValue(vehicleToEdit.getMileage());
     }
 }
