@@ -47,10 +47,10 @@ public class AssignmentController {
     }
 
     private void verifObjectAssignment(Assignment assignment) throws DalException {
-        if(assignment.getVehicleId() <= 0){
+        if(assignment.getVehicle() == null){
             throw new DalException("Le véhicule de l'affectation ne peut pas être vide.");
         }
-        if(assignment.getEmployeeId() <= 0){
+        if(assignment.getEmployee() == null){
             throw new DalException("L'employé de l'affectation ne peut pas être vide.");
         }
         if(assignment.getDateStart() == null){

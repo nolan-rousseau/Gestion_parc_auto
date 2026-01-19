@@ -52,7 +52,7 @@ public class EmployeeController {
         if(employee.getLastName() == null){
             throw new DalException("Le nom de l'employé ne peut pas être vide.");
         }
-        if(employee.getServiceId() == 0){
+        if(employee.getService() == null){
             throw new DalException("Le service de l'employé ne peut pas être vide.");
         }
         if(employee.getEmail() == null){

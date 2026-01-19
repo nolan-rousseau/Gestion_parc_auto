@@ -4,18 +4,18 @@ import java.time.LocalDate;
 
 public class Assignment {
     private int id;
-    private int vehicleId;
-    private int employeeId;
+    private Vehicle vehicle;
+    private Employee employee;
     private String comment;
     private LocalDate dateStart;
     private LocalDate dateEnd;
 
     public Assignment(){};
 
-    public Assignment(int id, int vehicleId, int employeeId, String comment, LocalDate dateStart, LocalDate dateEnd) {
+    public Assignment(int id, Vehicle vehicle, Employee employee, String comment, LocalDate dateStart, LocalDate dateEnd) {
         this.id = id;
-        this.vehicleId = vehicleId;
-        this.employeeId = employeeId;
+        this.vehicle = vehicle;
+        this.employee = employee;
         this.comment = comment;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -23,27 +23,27 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return id + ", " + vehicleId + ", " + employeeId + ", " + comment + ", " + dateStart + ", " + dateEnd;
+        return id + ", " + vehicle + ", " + employee + ", " + comment + ", " + dateStart + ", " + dateEnd;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getVehicleId() {
-        return vehicleId;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleId(int vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getComment() {

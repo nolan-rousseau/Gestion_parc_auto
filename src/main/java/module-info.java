@@ -9,6 +9,7 @@ module fr.il3.gestionparcauto {
     requires javafx.base;
     //requires fr.il3.gestionparcauto;
     requires java.desktop;
+    requires fr.il3.gestionparcauto;
 
     exports fr.il3.gestionparcauto.ihm.javafx;
     opens fr.il3.gestionparcauto.ihm.javafx to javafx.fxml;

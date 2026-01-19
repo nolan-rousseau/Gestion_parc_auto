@@ -1,6 +1,9 @@
 package fr.il3.gestionparcauto.dal.jdbc;
 
 import fr.il3.gestionparcauto.bo.Employee;
+import fr.il3.gestionparcauto.bo.Model;
+import fr.il3.gestionparcauto.bo.Service;
+import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.dal.EmployeeDAO;
 import fr.il3.gestionparcauto.utils.DalException;
 
@@ -21,7 +24,7 @@ public class EmployeeDAOJdbcImpl implements EmployeeDAO {
             PreparedStatement stmt = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, employee.getFirstName());
             stmt.setString(2, employee.getLastName());
-            stmt.setInt(3, employee.getServiceId());
+            stmt.setInt(3, employee.getService().getId());
             stmt.setString(4, employee.getPhone());
             stmt.setString(5, employee.getEmail());
 
@@ -49,8 +52,20 @@ public class EmployeeDAOJdbcImpl implements EmployeeDAO {
                 employee.setLastName(rs.getString("lastname"));
                 employee.setEmail(rs.getString("mail"));
                 employee.setPhone(rs.getString("phone"));
-                employee.setServiceId(rs.getInt("service_id"));
 
+                DAOFactory daoFactory = new DAOFactory();
+                ArrayList<Service> allServices = daoFactory.getServiceDAO().selectAll();
+                Service specificService = allServices.stream()
+                        .filter(b -> {
+                            try {
+                                return b.getId() == rs.getInt("service_id");
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                        })
+                        .findFirst()
+                        .orElse(null);
+                employee.setService(specificService);
 
                 employees.add(employee);
             }
@@ -69,7 +84,7 @@ public class EmployeeDAOJdbcImpl implements EmployeeDAO {
 
             stmt.setString(1, employee.getFirstName());
             stmt.setString(2, employee.getLastName());
-            stmt.setInt(3, employee.getServiceId());
+            stmt.setInt(3, employee.getService().getId());
             stmt.setString(4, employee.getPhone());
             stmt.setString(5, employee.getEmail());
 

@@ -6,24 +6,24 @@ public class Employee {
     private String lastName;
     private String email;
     private String phone;
-    private int serviceId;
+    private Service service;
 
     public Employee() {
 
     }
 
-    public Employee(int id, String firstName, String lastName, String email, String phone, int serviceId) {
+    public Employee(int id, String firstName, String lastName, String email, String phone, Service service) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.serviceId = serviceId;
+        this.service = service;
     }
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " (" + serviceId + ")";
+        return firstName + " " + lastName + " (" + service + ")";
     }
 
     public int getId() {
@@ -62,12 +62,12 @@ public class Employee {
         this.phone = phone;
     }
 
-    public int getServiceId() {
-        return serviceId;
+    public Service getService() {
+        return service;
     }
 
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public void setId(int id) {

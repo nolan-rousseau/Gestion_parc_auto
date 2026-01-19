@@ -1,7 +1,11 @@
 package fr.il3.gestionparcauto.dal.jdbc;
 
 import fr.il3.gestionparcauto.bo.Assignment;
+import fr.il3.gestionparcauto.bo.Employee;
+import fr.il3.gestionparcauto.bo.Service;
+import fr.il3.gestionparcauto.bo.Vehicle;
 import fr.il3.gestionparcauto.dal.AssignmentDAO;
+import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.utils.DalException;
 
 import java.sql.*;
@@ -20,8 +24,8 @@ public class AssignmentDAOJdbcImpl implements AssignmentDAO {
         try{
             Connection con = DAOJdbcImpl.getConnection();
             PreparedStatement stmt = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, assignment.getVehicleId());
-            stmt.setInt(2, assignment.getEmployeeId());
+            stmt.setInt(1, assignment.getVehicle().getId());
+            stmt.setInt(2, assignment.getEmployee().getId());
             stmt.setObject(3, assignment.getDateStart());
             stmt.setObject(4, assignment.getDateEnd());
             stmt.setString(5, assignment.getComment());
@@ -46,11 +50,35 @@ public class AssignmentDAOJdbcImpl implements AssignmentDAO {
             while (rs.next()) {
                 assignment = new Assignment();
                 assignment.setId(rs.getInt("id"));
-                assignment.setVehicleId(rs.getInt("vehicle_id"));
-                assignment.setEmployeeId(rs.getInt("employee_id"));
                 assignment.setDateStart(rs.getDate("dateStart").toLocalDate());
                 assignment.setDateEnd(rs.getDate("dateEnd").toLocalDate());
                 assignment.setComment(rs.getString("comment"));
+
+                DAOFactory daoFactory = new DAOFactory();
+                ArrayList<Vehicle> allVehicles = daoFactory.getVehicleDAO().selectAll();
+                Vehicle specificVehicule = allVehicles.stream()
+                        .filter(b -> {
+                            try {
+                                return b.getId() == rs.getInt("service_id");
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                        })
+                        .findFirst()
+                        .orElse(null);
+                assignment.setVehicle(specificVehicule);
+                ArrayList<Employee> allEmployees = daoFactory.getEmployeeDAO().selectAll();
+                Employee specificEmployee = allEmployees.stream()
+                        .filter(b -> {
+                            try {
+                                return b.getId() == rs.getInt("service_id");
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                        })
+                        .findFirst()
+                        .orElse(null);
+                assignment.setEmployee(specificEmployee);
 
                 assignments.add(assignment);
             }
@@ -67,8 +95,8 @@ public class AssignmentDAOJdbcImpl implements AssignmentDAO {
             Connection con = DAOJdbcImpl.getConnection();
             PreparedStatement stmt = con.prepareStatement(UPDATE)) {
 
-            stmt.setInt(1, assignment.getVehicleId());
-            stmt.setInt(2, assignment.getEmployeeId());
+            stmt.setInt(1, assignment.getVehicle().getId());
+            stmt.setInt(2, assignment.getEmployee().getId());
             stmt.setObject(3, assignment.getDateStart());
             stmt.setObject(4, assignment.getDateEnd());
             stmt.setString(5, assignment.getComment());
