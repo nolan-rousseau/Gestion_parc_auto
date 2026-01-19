@@ -45,11 +45,11 @@ public class EcranController {
         List<Assignment> assignments = AssignmentController.getController().selectAssignment();
         ObservableList<Assignment> AssignmentList = FXCollections.observableArrayList(assignments);
 
-        vehicleCol.setCellValueFactory(
-                cell -> new javafx.beans.property.SimpleStringProperty(
-                        cell.getValue().getVehicleId().toString()
-                )
-        );
+//        vehicleCol.setCellValueFactory(
+//                cell -> new javafx.beans.property.SimpleStringProperty(
+//                        cell.getValue().getVehicleId().toString()
+//                )
+//        );
 
         // fill listViews
         listViewVehicles.setItems(vehicleList);
