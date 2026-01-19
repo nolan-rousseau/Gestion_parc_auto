@@ -9,6 +9,7 @@ import fr.il3.gestionparcauto.bo.Employee;
 import fr.il3.gestionparcauto.utils.DalException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -37,29 +38,44 @@ public class EcranController {
     @FXML private TextArea textAreaInfoAssignment;
     @FXML private TextArea textAreaInfoEmployee;
 
+    @FXML private ChoiceBox<Object> choiceBoxBrand;
+    @FXML private ChoiceBox<String> choiceBoxStatus;
+    @FXML private ChoiceBox<Object> choiceBoxService;
+
+    private FilteredList<Vehicle> filteredVehicles;
+    private FilteredList<Assignment> filteredAssignments;
+    private FilteredList<Employee> filteredEmployees;
 
     @FXML
     public void initialize() throws DalException {
-        // get data lists from database
-        List<Vehicle> vehicles = VehicleController.getController().selectVehicle();
-        ObservableList<Vehicle> vehicleList = FXCollections.observableArrayList(vehicles);
+        ObservableList<Vehicle> masterVehicleList = FXCollections.observableArrayList(VehicleController.getController().selectVehicle());
+        ObservableList<Employee> masterEmployeeList = FXCollections.observableArrayList(EmployeeController.getController().selectEmployee());
+        ObservableList<Assignment> masterAssignmentList = FXCollections.observableArrayList(AssignmentController.getController().selectAssignment());
 
-        List<Employee> employees = EmployeeController.getController().selectEmployee();
-        ObservableList<Employee> EmployeeList = FXCollections.observableArrayList(employees);
+        filteredVehicles = new FilteredList<>(masterVehicleList, p -> true);
+        filteredEmployees = new FilteredList<>(masterEmployeeList, p -> true);
+        filteredAssignments = new FilteredList<>(masterAssignmentList, p -> true);
 
-        List<Assignment> assignments = AssignmentController.getController().selectAssignment();
-        ObservableList<Assignment> AssignmentList = FXCollections.observableArrayList(assignments);
+        listViewVehicles.setItems(filteredVehicles);
+        listViewEmployees.setItems(filteredEmployees);
+        tableViewAssignments.setItems(filteredAssignments);
+
+        choiceBoxBrand.getItems().add("Toutes les marques");
+        masterVehicleList.stream().map(v -> v.getModel().getBrand().getName()).distinct().forEach(choiceBoxBrand.getItems()::add);
+        choiceBoxBrand.getSelectionModel().selectFirst();
+
+        choiceBoxStatus.setItems(FXCollections.observableArrayList("Toutes", "Actives", "Terminées"));
+        choiceBoxStatus.getSelectionModel().selectFirst();
+
+        choiceBoxService.getItems().add("Tous les services");
+        masterEmployeeList.stream().map(e -> e.getService().getName()).distinct().forEach(choiceBoxService.getItems()::add);
+        choiceBoxService.getSelectionModel().selectFirst();
 
         // initialize table columns
         vehicleCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleStringProperty(cell.getValue().getVehicle().toString()));
         employeeCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleStringProperty(cell.getValue().getEmployee().toString()));
         startCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleObjectProperty<>(cell.getValue().getDateStart()));
         endCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleObjectProperty<>(cell.getValue().getDateEnd()));
-
-        // fill listViews
-        listViewVehicles.setItems(vehicleList);
-        listViewEmployees.setItems(EmployeeList);
-        tableViewAssignments.setItems(AssignmentList);
 
         // update text fields
         tableViewAssignments
@@ -92,6 +108,35 @@ public class EcranController {
                         textAreaInfoEmployee.clear();
                     }
                 });
+    }
+
+    @FXML
+    private void filterVehicles() {
+        Object selected = choiceBoxBrand.getValue();
+        filteredVehicles.setPredicate(vehicle -> {
+            if (selected == null || selected.equals("Toutes les marques")) return true;
+            return vehicle.getModel().getBrand().getName().equals(selected.toString());
+        });
+    }
+
+    @FXML
+    private void filterEmployees() {
+        Object selected = choiceBoxService.getValue();
+        filteredEmployees.setPredicate(employee -> {
+            if (selected == null || selected.equals("Tous les services")) return true;
+            return employee.getService().getName().equals(selected.toString());
+        });
+    }
+
+    @FXML
+    private void filterAssignments() {
+        String selected = choiceBoxStatus.getValue();
+        LocalDate today = LocalDate.now();
+        filteredAssignments.setPredicate(a -> {
+            if (selected == null || selected.equals("Toutes")) return true;
+            boolean isActive = !a.getDateStart().isAfter(today) && !a.getDateEnd().isBefore(today);
+            return selected.equals("Actives") ? isActive : !isActive;
+        });
     }
 
     @FXML
