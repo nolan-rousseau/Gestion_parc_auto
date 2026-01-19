@@ -1,61 +1,66 @@
 package fr.il3.gestionparcauto.ihm.javafx;
 
-import fr.il3.gestionparcauto.utils.DalException;
+import fr.il3.gestionparcauto.ihm.javafx.utils.ihmException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import static fr.il3.gestionparcauto.ihm.javafx.utils.OpenWindow.OpenWindow;
 
 public class EcranController {
 
     @FXML
-    private TextField tb_filmTitle;
-    @FXML
-    private TextField tb_filmDuree;
-    @FXML
-    private TextField tb_filmAnnee;
-    @FXML
-    private TextField tb_filmRealisateur;
-
-    @FXML
-    private Button btt_filmPrevious;
-    @FXML
-    private Button btt_filmNext;
-
-    int indexFilm = 0;
-
-//    public Parc getFilm(int index) {
-//        try {
-//            return ParcController.getController().selectFilm().get(index);
-//        } catch (DalException e) {
-//            afficherException(e.getMessage());
-//            return null;
-//        }
-//    }
-
-//    @FXML
-//    public void filmNext(javafx.event.ActionEvent event) {
-//        indexFilm++;
-//        afficherFilm(getFilm(indexFilm));
-//    }
-
-//    public void afficherFilm(Parc parc) {
-//        if (parc != null) {
-//            tb_filmTitle.setText(parc.getTitre());
-//            tb_filmDuree.setText(Integer.toString(parc.getDuree()));
-//            tb_filmRealisateur.setText(parc.getRealisateur());
-//            tb_filmAnnee.setText(Integer.toString(parc.getAnnee()));
-//        } else  {
-//            afficherException("Le film n'existe pas");
-//        }
-//    }
-
-    private void afficherException(String txt) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erreur");
-        alert.setHeaderText("Une erreur est survenue");
-        alert.setContentText(txt);
-        alert.showAndWait();
+    private void CreateAssignment(ActionEvent event) {
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Assignment.fxml");
     }
+
+    @FXML
+    private void ExportAssignments(ActionEvent event) {
+    }
+
+    @FXML
+    private void ShowStats(ActionEvent event) {
+    }
+
+    @FXML
+    private void AddEmployee(ActionEvent event) {
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Employee.fxml");
+    }
+    @FXML
+    private void ModifyEmployee(ActionEvent event) {
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Edit_Employee.fxml");
+    }
+
+    @FXML
+    private void DeleteEmployee(ActionEvent event) {
+    }
+
+    @FXML
+    private void ExportEmployees(ActionEvent event) {
+    }
+
+    @FXML
+    private void AddVehicle(ActionEvent event) {
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Vehicle.fxml");
+    }
+
+    @FXML
+    private void ModifyVehicle(ActionEvent event) {
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Edit_Vehicle.fxml");
+    }
+
+    @FXML
+    private void DeleteVehicle(ActionEvent event) {
+    }
+
+    @FXML
+    private void ExportVehicles(ActionEvent event) {
+    }
+
+
 
 }

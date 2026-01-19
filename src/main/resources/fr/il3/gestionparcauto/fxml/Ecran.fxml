@@ -5,20 +5,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.il3.gestionparcauto.ihm.javafx.EcranController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <VBox.margin>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </VBox.margin>
          <children>
-            <Button mnemonicParsing="false" text="Créer une affectation">
+            <Button fx:id="btnShowStats" mnemonicParsing="false" onAction="#ShowStats" text="Statistiques">
                <HBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Statistiques">
+            <Button fx:id="btnCreateAssignment" mnemonicParsing="false" onAction="#CreateAssignment" text="Créer une affectation">
                <HBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </HBox.margin>
@@ -52,7 +51,7 @@
                   </Label>
                   <HBox alignment="TOP_CENTER" prefHeight="24.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Ajouter">
+                        <Button fx:id="btnAddVehicle" mnemonicParsing="false" onAction="#AddVehicle" text="Ajouter">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -60,7 +59,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Modifier">
+                        <Button fx:id="btnModifyVehicle" mnemonicParsing="false" onAction="#ModifyVehicle" text="Modifier">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -68,7 +67,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Supprimer">
+                        <Button fx:id="btnDeleteVehicle" mnemonicParsing="false" onAction="#DeleteVehicle" text="Supprimer">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -105,7 +104,7 @@
                   </Label>
                   <HBox alignment="TOP_CENTER" prefHeight="24.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Ajouter">
+                        <Button fx:id="btnAddEmployee" mnemonicParsing="false" onAction="#AddEmployee" text="Ajouter">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -113,7 +112,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Modifier">
+                        <Button fx:id="btnModifyEmployee" mnemonicParsing="false" onAction="#ModifyEmployee" text="Modifier">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -121,7 +120,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Supprimer">
+                        <Button fx:id="btnDeleteEmployee" mnemonicParsing="false" onAction="#DeleteEmployee" text="Supprimer">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -204,7 +203,7 @@
                   </ListView>
                   <HBox alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="303.0" layoutY="10.0" mnemonicParsing="false" text="Expoter (.csv)" />
+                        <Button fx:id="btnExportVehicles" layoutX="303.0" layoutY="10.0" mnemonicParsing="false" onAction="#ExportVehicles" text="Exporter (.csv)" />
                      </children>
                      <VBox.margin>
                         <Insets left="8.0" right="8.0" />
@@ -242,7 +241,7 @@
                   </TableView>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Expoter (.csv)" />
+                        <Button fx:id="btnExportAssignments" mnemonicParsing="false" onAction="#ExportAssignments" text="Exporter (.csv)" />
                      </children>
                      <VBox.margin>
                         <Insets left="8.0" right="8.0" />
@@ -276,7 +275,7 @@
                   </ListView>
                   <HBox alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Expoter (.csv)" />
+                        <Button fx:id="btnExportEmployees" mnemonicParsing="false" onAction="#ExportEmployees" text="Exporter (.csv)" />
                      </children>
                      <VBox.margin>
                         <Insets left="8.0" right="8.0" />
