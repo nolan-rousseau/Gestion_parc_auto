@@ -8,19 +8,19 @@ public class Vehicle {
     private Long mileage;
     private LocalDate registrationDate;
     private String comment;
-    private int modelId;
+    private Model model;
 
     public Vehicle() {
 
     }
 
-    public Vehicle(int id, String registration, Long mileage, LocalDate registrationDate, String comment, int modelId) {
+    public Vehicle(int id, String registration, Long mileage, LocalDate registrationDate, String comment, Model model) {
         this.id = id;
         this.registration = registration;
         this.mileage = mileage;
         this.registrationDate = registrationDate;
         this.comment = comment;
-        this.modelId = modelId;
+        this.model = model;
     }
 
     @Override
@@ -64,12 +64,12 @@ public class Vehicle {
         this.comment = comment;
     }
 
-    public int getModelId() {
-        return modelId;
+    public Model getModel() {
+        return model;
     }
 
-    public void setModelId(int modelId) {
-        this.modelId = modelId;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public void setId(int id) {

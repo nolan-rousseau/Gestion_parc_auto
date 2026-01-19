@@ -51,7 +51,7 @@ public class VehicleController {
         if(vehicle.getRegistration().isEmpty()){
             throw new DalException("L'immatriculation du véhicule ne peut pas être vide.");
         }
-        if(vehicle.getModelId() <= 0){
+        if(vehicle.getModel() == null){
             throw new DalException("Le modèle du véhicule ne peut pas être vide.");
         }
         if(vehicle.getMileage() == null && vehicle.getMileage() < 0){
