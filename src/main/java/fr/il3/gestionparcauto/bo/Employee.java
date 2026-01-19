@@ -26,6 +26,10 @@ public class Employee {
         return firstName + " " + lastName + " (" + service + ")";
     }
 
+    public String getInformations(){
+        return "e-mail : " + email + "\ntél : " + phone;
+    }
+
     public int getId() {
         return id;
     }
