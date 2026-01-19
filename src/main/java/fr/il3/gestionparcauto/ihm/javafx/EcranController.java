@@ -11,9 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,13 +22,17 @@ public class EcranController {
 
     @FXML private ListView<Vehicle> listViewVehicles;
 
-    @FXML private ListView<Employee> listViewAgents;
+    @FXML private ListView<Employee> listViewEmployees;
 
     @FXML private TableView<Assignment> tableViewAssignments;
     @FXML private TableColumn<Assignment, String> vehicleCol;
     @FXML private TableColumn<Assignment, String> employeeCol;
     @FXML private TableColumn<Assignment, LocalDate> startCol;
     @FXML private TableColumn<Assignment, LocalDate> endCol;
+
+    @FXML private TextArea textAreaInfoVehicle;
+    @FXML private TextArea textAreaInfoAssignment;
+    @FXML private TextArea textAreaInfoEmployee;
 
 
     @FXML
@@ -45,16 +47,48 @@ public class EcranController {
         List<Assignment> assignments = AssignmentController.getController().selectAssignment();
         ObservableList<Assignment> AssignmentList = FXCollections.observableArrayList(assignments);
 
-//        vehicleCol.setCellValueFactory(
-//                cell -> new javafx.beans.property.SimpleStringProperty(
-//                        cell.getValue().getVehicleId().toString()
-//                )
-//        );
+        // initialize table columns
+        vehicleCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleStringProperty(cell.getValue().getVehicle().toString()));
+        employeeCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleStringProperty(cell.getValue().getEmployee().toString()));
+        startCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleObjectProperty<>(cell.getValue().getDateStart()));
+        endCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleObjectProperty<>(cell.getValue().getDateEnd()));
 
         // fill listViews
         listViewVehicles.setItems(vehicleList);
-        listViewAgents.setItems(EmployeeList);
+        listViewEmployees.setItems(EmployeeList);
         tableViewAssignments.setItems(AssignmentList);
+
+        // update text fields
+        tableViewAssignments
+                .getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, oldAssignment, newAssignment) -> {
+                    if (newAssignment != null) {
+                        textAreaInfoAssignment.setText(newAssignment.getComment());
+                    } else {
+                        textAreaInfoAssignment.clear();
+                    }
+                });
+        listViewVehicles
+                .getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, oldAssignment, newAssignment) -> {
+                    if (newAssignment != null) {
+                        textAreaInfoVehicle.setText(newAssignment.getComment());
+                    } else {
+                        textAreaInfoVehicle.clear();
+                    }
+                });
+        listViewEmployees
+                .getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, oldAssignment, newAssignment) -> {
+                    if (newAssignment != null) {
+                        textAreaInfoEmployee.setText(newAssignment.getInformations());
+                    } else {
+                        textAreaInfoEmployee.clear();
+                    }
+                });
     }
 
     @FXML

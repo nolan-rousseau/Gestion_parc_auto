@@ -59,7 +59,7 @@ public class AssignmentDAOJdbcImpl implements AssignmentDAO {
                 Vehicle specificVehicule = allVehicles.stream()
                         .filter(b -> {
                             try {
-                                return b.getId() == rs.getInt("service_id");
+                                return b.getId() == rs.getInt("vehicle_id");
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
                             }
@@ -71,7 +71,7 @@ public class AssignmentDAOJdbcImpl implements AssignmentDAO {
                 Employee specificEmployee = allEmployees.stream()
                         .filter(b -> {
                             try {
-                                return b.getId() == rs.getInt("service_id");
+                                return b.getId() == rs.getInt("employee_id");
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
                             }

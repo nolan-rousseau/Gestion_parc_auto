@@ -25,7 +25,7 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return model + " (" + registration + ")";
+        return model.getBrand().toString() + " " + model + " (" + registration + ")";
     }
 
     public int getId() {

@@ -13,7 +13,7 @@ public class Service {
 
     @Override
     public String toString() {
-        return id + ", " + name;
+        return name;
     }
 
     public int getId() {
