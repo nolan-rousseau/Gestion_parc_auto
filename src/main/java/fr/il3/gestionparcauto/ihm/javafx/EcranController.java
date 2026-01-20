@@ -148,6 +148,8 @@ public class EcranController {
 
                     javafx.scene.shape.Circle indicator = new javafx.scene.shape.Circle(8);
                     indicator.setFill(isActive ? javafx.scene.paint.Color.GREEN : javafx.scene.paint.Color.RED);
+
+                    setGraphic(indicator);
                 }
             }
         });
