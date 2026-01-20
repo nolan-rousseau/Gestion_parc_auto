@@ -51,7 +51,7 @@ public class ModelController {
     }
 
     private void verifObjectModel(Model model) throws DalException {
-        if (model.getName() == null) {
+        if (model.getName().isEmpty()) {
             throw new DalException("Le nom du modèle ne peut pas être vide.");
         }
         if (model.getBrand().getId() <= 0) {

@@ -1,5 +1,6 @@
 package fr.il3.gestionparcauto.bll;
 
+import fr.il3.gestionparcauto.bo.Brand;
 import fr.il3.gestionparcauto.bo.Model;
 import fr.il3.gestionparcauto.bo.Service;
 import fr.il3.gestionparcauto.dal.DAOFactory;
@@ -23,9 +24,8 @@ public class ServiceController {
     }
 
     public void addService(Service service) throws DalException {
-        if(service.getName()==null){
-            throw new DalException("Le nouveau nom du service ne peut pas être vide.");
-        }
+        verifObjectService(service);
+
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getServiceDAO().addService(service);
     }
@@ -34,9 +34,7 @@ public class ServiceController {
         if (service.getId() <= 0) {
             throw new DalException("Impossible de modifier un service sans un identifiant valide.");
         }
-        if (service.getName() == null || service.getName().isEmpty()) {
-            throw new DalException("Le nouveau nom du service ne peut pas être vide.");
-        }
+        verifObjectService(service);
 
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getServiceDAO().updateService(service);
@@ -49,6 +47,12 @@ public class ServiceController {
 
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getServiceDAO().deleteService(id);
+    }
+
+    private void verifObjectService(Service service) throws DalException {
+        if(service.getName().isEmpty()){
+            throw new DalException("Le nom du service ne peut pas être vide.");
+        }
     }
 
     public Service getServiceFromName(String name) throws DalException {

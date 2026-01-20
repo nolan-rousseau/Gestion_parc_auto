@@ -49,16 +49,16 @@ public class EmployeeController {
         if(employee.getFirstName().isEmpty()){
             throw new DalException("Le prénom de l'employé ne peut pas être vide.");
         }
-        if(employee.getLastName() == null){
+        if(employee.getLastName().isEmpty()){
             throw new DalException("Le nom de l'employé ne peut pas être vide.");
         }
         if(employee.getService() == null){
             throw new DalException("Le service de l'employé ne peut pas être vide.");
         }
-        if(employee.getEmail() == null){
+        if(employee.getEmail().isEmpty()){
             throw new DalException("Le mail de l'employé ne peut pas être vide.");
         }
-        if(employee.getPhone() == null){
+        if(employee.getPhone().isEmpty()){
             throw new DalException("Le numéro de télephone de l'employé ne peut pas être vide.");
         }
     }

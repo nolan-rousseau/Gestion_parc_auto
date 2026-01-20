@@ -59,6 +59,9 @@ public class AssignmentController {
         if(assignment.getDateEnd() == null){
             throw new DalException("La date de fin de l'affectation ne peut pas être vide.");
         }
+        if(assignment.getDateEnd().isBefore(assignment.getDateStart())){
+            throw new DalException("La date de fin de l'affectation ne peut pas être avant la date de début.");
+        }
     }
 
     private ArrayList getAssignment(int id) throws DalException {

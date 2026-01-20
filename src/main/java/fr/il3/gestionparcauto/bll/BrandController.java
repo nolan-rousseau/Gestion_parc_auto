@@ -1,5 +1,6 @@
 package fr.il3.gestionparcauto.bll;
 
+import fr.il3.gestionparcauto.bo.Assignment;
 import fr.il3.gestionparcauto.bo.Brand;
 import fr.il3.gestionparcauto.bo.Model;
 import fr.il3.gestionparcauto.dal.DAOFactory;
@@ -24,9 +25,7 @@ public class BrandController {
     }
 
     public void addBrand(Brand brand) throws DalException {
-        if(brand.getName()==null){
-            throw new DalException("Le nouveau nom de la marque ne peut pas être vide.");
-        }
+        verifObjectAssignment(brand);
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getBrandDAO().addBrand(brand);
     }
@@ -35,9 +34,7 @@ public class BrandController {
         if (brand.getId() <= 0) {
             throw new DalException("Impossible de modifier une marque sans un identifiant valide.");
         }
-        if (brand.getName() == null || brand.getName().isEmpty()) {
-            throw new DalException("Le nouveau nom de la marque ne peut pas être vide.");
-        }
+        verifObjectAssignment(brand);
 
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getBrandDAO().updateBrand(brand);
@@ -50,6 +47,12 @@ public class BrandController {
 
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getBrandDAO().deleteBrand(id);
+    }
+
+    private void verifObjectAssignment(Brand brand) throws DalException {
+        if(brand.getName().isEmpty()){
+            throw new DalException("Le nom de la marque ne peut pas être vide.");
+        }
     }
 
     public Brand getBrandFromName(String name) throws DalException {
