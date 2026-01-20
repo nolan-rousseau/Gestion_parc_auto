@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class Add_EmployeController implements Initializable {
+public class Add_EmployeeController implements Initializable {
 
     @FXML
     private ComboBox<String> comboService;

@@ -46,7 +46,7 @@ public class EmployeeController {
     }
 
     private void verifObjectEmployee(Employee employee) throws DalException {
-        if(employee.getFirstName() == null){
+        if(employee.getFirstName().isEmpty()){
             throw new DalException("Le prénom de l'employé ne peut pas être vide.");
         }
         if(employee.getLastName() == null){
