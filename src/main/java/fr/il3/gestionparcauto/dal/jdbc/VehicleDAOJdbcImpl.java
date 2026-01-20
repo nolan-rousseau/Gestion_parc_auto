@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class VehicleDAOJdbcImpl implements VehicleDAO {
 
-    private final String INSERT = "INSERT INTO Vehicles (registration, model_id, mileage, registrationDate, comment) VALUES (?, ?, ?, ?, ?) ";
+    private final String INSERT = "INSERT INTO Vehicles (registration, model_id, mileage, lastUpdateMileage, registrationDate, comment) VALUES (?, ?, ?, ?, ?, ?) ";
     private final String SELECT_ALL = "SELECT * FROM Vehicles ";
-    private final String UPDATE = "UPDATE Vehicles SET registration = ?, model_id = ?, mileage = ?, registrationDate = ?, comment = ? WHERE id = ?";
+    private final String UPDATE = "UPDATE Vehicles SET registration = ?, model_id = ?, mileage = ?, lastUpdateMileage = ?, registrationDate = ?, comment = ? WHERE id = ?";
     private final String DELETE = "DELETE FROM Vehicles WHERE id = ?";
 
     @Override
@@ -26,8 +26,9 @@ public class VehicleDAOJdbcImpl implements VehicleDAO {
             stmt.setString(1, vehicle.getRegistration());
             stmt.setInt(2, vehicle.getModel().getId());
             stmt.setLong(3, vehicle.getMileage());
-            stmt.setObject(4, vehicle.getRegistrationDate());
-            stmt.setString(5, vehicle.getComment());
+            stmt.setObject(4, vehicle.getLastUpdateMileage());
+            stmt.setObject(5, vehicle.getRegistrationDate());
+            stmt.setString(6, vehicle.getComment());
 
             stmt.executeUpdate();
 
@@ -51,6 +52,7 @@ public class VehicleDAOJdbcImpl implements VehicleDAO {
                 vehicle.setId(rs.getInt("id"));
                 vehicle.setRegistration(rs.getString("registration"));
                 vehicle.setMileage(rs.getLong("mileage"));
+                vehicle.setLastUpdateMileage(rs.getDate("lastUpdateMileage").toLocalDate());
                 vehicle.setRegistrationDate(rs.getDate("registrationDate").toLocalDate());
                 vehicle.setComment(rs.getString("comment"));
 
@@ -86,9 +88,10 @@ public class VehicleDAOJdbcImpl implements VehicleDAO {
             stmt.setString(1, vehicle.getRegistration());
             stmt.setInt(2, vehicle.getModel().getId());
             stmt.setLong(3, vehicle.getMileage());
-            stmt.setObject(4, vehicle.getRegistrationDate());
-            stmt.setString(5, vehicle.getComment());
-            stmt.setInt(6, vehicle.getId());
+            stmt.setObject(4, vehicle.getLastUpdateMileage());
+            stmt.setObject(5, vehicle.getRegistrationDate());
+            stmt.setString(6, vehicle.getComment());
+            stmt.setInt(7, vehicle.getId());
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected == 0) {

@@ -6,11 +6,11 @@ INSERT INTO Models (brand_id, name) VALUES
     (2, '208'), (2, '3008'),
     (3, 'C3');
 
-INSERT INTO Vehicles (registration, model_id, mileage, registrationDate, comment) VALUES
-    ('FX-210-EB', 2, 32000, '2020-03-20', NULL),
-    ('GE-852-QQ', 1, 45000, '2021-05-12', 'Portière abimée'),
-    ('GM-404-BK', 3, 12000, '2022-10-01', 'Antenne volée'),
-    ('HB-109-RS', 5, 5000, '2023-01-15', 'Feu avant cassé');
+INSERT INTO Vehicles (registration, model_id, mileage, lastUpdateMileage, registrationDate, comment) VALUES
+    ('FX-210-EB', 2, 32000, '2025-01-20','2020-03-20', NULL),
+    ('GE-852-QQ', 1, 45000, '2025-01-20','2021-05-12', 'Portière abimée'),
+    ('GM-404-BK', 3, 12000, '2025-01-20','2022-10-01', 'Antenne volée'),
+    ('HB-109-RS', 5,  5000, '2025-01-20','2023-01-15', 'Feu avant cassé');
 
 INSERT INTO Services (name) VALUES
     ('Voirie'), ('Espaces verts'), ('Sécurité'), ('Logisitque');

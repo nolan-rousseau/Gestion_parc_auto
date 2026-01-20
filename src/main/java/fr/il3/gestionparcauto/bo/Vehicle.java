@@ -6,6 +6,7 @@ public class Vehicle {
     private int id;
     private String registration;
     private Long mileage;
+    private LocalDate lastUpdateMileage;
     private LocalDate registrationDate;
     private String comment;
     private Model model;
@@ -14,10 +15,11 @@ public class Vehicle {
 
     }
 
-    public Vehicle(int id, String registration, Long mileage, LocalDate registrationDate, String comment, Model model) {
+    public Vehicle(int id, String registration, Long mileage, LocalDate lastUpdateMileage, LocalDate registrationDate, String comment, Model model) {
         this.id = id;
         this.registration = registration;
         this.mileage = mileage;
+        this.lastUpdateMileage = lastUpdateMileage;
         this.registrationDate = registrationDate;
         this.comment = comment;
         this.model = model;
@@ -48,6 +50,10 @@ public class Vehicle {
         this.mileage = mileage;
     }
 
+    public LocalDate getLastUpdateMileage() { return lastUpdateMileage; }
+
+    public void setLastUpdateMileage(LocalDate lastUpdateMileage) { this.lastUpdateMileage = lastUpdateMileage; }
+
     public LocalDate getRegistrationDate() {
         return registrationDate;
     }
@@ -77,12 +83,14 @@ public class Vehicle {
     }
 
     public String getInfo() {
-        String info = "Date d'immatriculation : " + registrationDate.toString() + "\n" +
-                "Kilométrage : " + mileage.toString();
+        String info = "Date d'immatriculation : " + registrationDate.toString() +
+                "\nKilométrage : " + mileage.toString();
 
         if (comment != null && !comment.trim().isEmpty()) {
             info += "\nRemarques : " + comment;
         }
+
+        info += "\n\nDernière mise à jour : " + lastUpdateMileage.toString();
 
         return info;
     }

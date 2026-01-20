@@ -15,6 +15,7 @@ CREATE TABLE Vehicles (
     registration VARCHAR(10) NOT NULL,
     model_id INT NOT NULL,
     mileage BIGINT NOT NULL,
+    lastUpdateMileage DATE NOT NULL,
     registrationDate DATE NOT NULL,
     comment VARCHAR(500),
     CONSTRAINT FK_Vehicle_Model FOREIGN KEY (model_id) REFERENCES Models(id)
