@@ -75,4 +75,10 @@ public class Vehicle {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getInfo() {
+        return "Date d'immatriculation : " + registrationDate.toString() + "\n" +
+                "Kilométrage : " + mileage.toString() + "\n" +
+                "Remarques : " + comment;
+    }
 }

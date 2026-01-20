@@ -116,7 +116,7 @@ public class EcranController {
                 .selectedItemProperty()
                 .addListener((obs, oldAssignment, newAssignment) -> {
                     if (newAssignment != null) {
-                        textAreaInfoVehicle.setText(newAssignment.getComment());
+                        textAreaInfoVehicle.setText(newAssignment.getInfo());
                     } else {
                         textAreaInfoVehicle.clear();
                     }
@@ -126,7 +126,7 @@ public class EcranController {
                 .selectedItemProperty()
                 .addListener((obs, oldAssignment, newAssignment) -> {
                     if (newAssignment != null) {
-                        textAreaInfoEmployee.setText(newAssignment.getInformations());
+                        textAreaInfoEmployee.setText(newAssignment.getInfo());
                     } else {
                         textAreaInfoEmployee.clear();
                     }
