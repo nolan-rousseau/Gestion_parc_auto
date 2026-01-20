@@ -17,6 +17,11 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </HBox.margin>
             </Button>
+            <Button fx:id="btnManageLists" mnemonicParsing="false" text="Gérer les listes">
+               <HBox.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <GridPane alignment="TOP_CENTER" hgap="8.0" prefHeight="1000.0" vgap="8.0">
