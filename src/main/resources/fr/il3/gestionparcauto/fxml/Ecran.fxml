@@ -3,6 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.il3.gestionparcauto.ihm.javafx.EcranController">
@@ -276,6 +277,31 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" />
                      </VBox.margin>
                   </TableView>
+                   <HBox alignment="CENTER_LEFT" spacing="20.0">
+                       <children>
+                           <HBox alignment="CENTER" spacing="5.0">
+                               <children>
+                                   <Circle fill="ORANGE" radius="6.0" />
+                                   <Label text="À venir" />
+                               </children>
+                           </HBox>
+                           <HBox alignment="CENTER" spacing="5.0">
+                               <children>
+                                   <Circle fill="GREEN" radius="6.0" />
+                                   <Label text="Active" />
+                               </children>
+                           </HBox>
+                           <HBox alignment="CENTER" spacing="5.0">
+                               <children>
+                                   <Circle fill="RED" radius="6.0" />
+                                   <Label text="Terminée" />
+                               </children>
+                           </HBox>
+                       </children>
+                       <VBox.margin>
+                           <Insets left="8.0" right="8.0" />
+                       </VBox.margin>
+                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="btnExportAssignments" mnemonicParsing="false" onAction="#ExportAssignments" text="Exporter (.csv)" />

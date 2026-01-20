@@ -76,7 +76,7 @@ public class EcranController {
         masterVehicleList.stream().map(v -> v.getModel().getBrand().getName()).distinct().forEach(choiceBoxBrand.getItems()::add);
         choiceBoxBrand.getSelectionModel().selectFirst();
 
-        choiceBoxStatus.setItems(FXCollections.observableArrayList("Toutes", "Actives", "Terminées"));
+        choiceBoxStatus.setItems(FXCollections.observableArrayList("Toutes", "Actives", "En cours", "Terminées"));
         choiceBoxStatus.getSelectionModel().selectFirst();
 
         choiceBoxService.getItems().add("Tous les services");
@@ -142,25 +142,19 @@ public class EcranController {
 
                 if (item == null || empty) {
                     setGraphic(null);
-                    setStyle("");
                 } else {
-                    Color color = Color.BLACK;
+                    Color color;
                     switch (item.isActive()){
-                        case 1:
-                            color = Color.ORANGE;
-                            break;
-                        case 2:
-                            color = Color.GREEN;
-                            break;
-                        case 3:
-                            color = Color.RED;
-                            break;
+                        case 1: color = Color.ORANGE; break;
+                        case 2: color = Color.GREEN; break;
+                        case 3: color = Color.RED; break;
+                        default: color = Color.BLACK;
                     }
 
                     javafx.scene.shape.Circle indicator = new javafx.scene.shape.Circle(8);
                     indicator.setFill(color);
-
                     setGraphic(indicator);
+                    setAlignment(javafx.geometry.Pos.CENTER);
                 }
             }
         });
