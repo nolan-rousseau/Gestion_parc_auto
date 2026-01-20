@@ -62,6 +62,22 @@ public class AssignmentController {
         if(assignment.getDateEnd().isBefore(assignment.getDateStart())){
             throw new DalException("La date de fin de l'affectation ne peut pas être avant la date de début.");
         }
+
+        long count = AssignmentController.getController().selectAssignment().stream()
+                .filter(a -> a.getVehicle().getId() == assignment.getVehicle().getId())
+                .filter(a -> a.getId() != assignment.getId())
+                .filter(existing -> {
+                    boolean startBeforeOrEqualEnd = !assignment.getDateStart().isAfter(existing.getDateEnd());
+                    boolean endAfterOrEqualStart = !assignment.getDateEnd().isBefore(existing.getDateStart());
+
+                    return startBeforeOrEqualEnd && endAfterOrEqualStart;
+                })
+                .count();
+
+        if (count > 0) {
+            throw new DalException("Le véhicule est déjà réservé sur cette période.");
+        }
+
     }
 
     private ArrayList getAssignment(int id) throws DalException {

@@ -4,14 +4,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.il3.gestionparcauto.ihm.javafx.Add_AssignmentController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.il3.gestionparcauto.ihm.javafx.Add_AssignmentController">
    <children>
-      <VBox prefHeight="400.0" prefWidth="300.0">
+      <VBox prefHeight="400.0" prefWidth="394.0">
          <children>
             <GridPane alignment="CENTER" prefHeight="386.0" prefWidth="268.0" VBox.vgrow="NEVER">
               <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="132.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="99.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="217.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
@@ -23,8 +23,8 @@
                <children>
                   <Label text="Agent :" />
                   <Label text="Véhicule:" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="comboEmployee" prefWidth="150.0" GridPane.columnIndex="1" />
-                  <ComboBox fx:id="comboVehicle" layoutX="146.0" layoutY="165.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="comboEmployee" prefHeight="25.0" prefWidth="251.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="comboVehicle" layoutX="146.0" layoutY="165.0" prefHeight="25.0" prefWidth="251.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <DatePicker fx:id="datepickerStart" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <DatePicker fx:id="datepickerEnd" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Date de début :" GridPane.rowIndex="2" />
