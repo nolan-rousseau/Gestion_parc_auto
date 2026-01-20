@@ -166,12 +166,6 @@ public class EcranController {
         OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Assignment.fxml", this);
     }
 
-    private String escapeCsv(String text) {
-        if (text == null) return "";
-        return text.replace(";", ",")
-                .replace("\n", " ")
-                .replace("\r", "");
-    }
 
     @FXML
     private void ExportAssignments(ActionEvent event) {
