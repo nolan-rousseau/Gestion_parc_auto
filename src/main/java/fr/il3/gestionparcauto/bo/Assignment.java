@@ -70,12 +70,15 @@ public class Assignment {
         this.dateEnd = dateEnd;
     }
 
-    public boolean isActive() {
-        if (dateStart != null && dateEnd != null) {
-            LocalDate today = LocalDate.now();
-            return (!today.isBefore(dateStart) && !today.isAfter(dateEnd));
+    public int isActive() {
+        LocalDate today = LocalDate.now();
+        if (dateStart.isAfter(today)) {
+            return 1; // Affectation pas encore débutée
+        } else if (dateEnd.isBefore(today)) {
+            return 3; // Affectation terminée
+        } else {
+            return 2; // Affectation en cours
         }
-        return false;
     }
 
     public void setId(int id) {

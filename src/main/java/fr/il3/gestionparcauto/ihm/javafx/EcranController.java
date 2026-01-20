@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -143,11 +144,21 @@ public class EcranController {
                     setGraphic(null);
                     setStyle("");
                 } else {
-                    LocalDate today = LocalDate.now();
-                    boolean isActive = !item.getDateStart().isAfter(today) && !item.getDateEnd().isBefore(today);
+                    Color color = Color.BLACK;
+                    switch (item.isActive()){
+                        case 1:
+                            color = Color.YELLOW;
+                            break;
+                        case 2:
+                            color = Color.GREEN;
+                            break;
+                        case 3:
+                            color = Color.RED;
+                            break;
+                    }
 
                     javafx.scene.shape.Circle indicator = new javafx.scene.shape.Circle(8);
-                    indicator.setFill(isActive ? javafx.scene.paint.Color.GREEN : javafx.scene.paint.Color.RED);
+                    indicator.setFill(color);
 
                     setGraphic(indicator);
                 }
@@ -496,5 +507,10 @@ public class EcranController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void ManageLists(ActionEvent event) {
+        OpenWindow("/fr/il3/gestionparcauto/fxml/Manage_Lists.fxml", this);
     }
 }
