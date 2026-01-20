@@ -76,7 +76,7 @@ public class EcranController {
         masterVehicleList.stream().map(v -> v.getModel().getBrand().getName()).distinct().forEach(choiceBoxBrand.getItems()::add);
         choiceBoxBrand.getSelectionModel().selectFirst();
 
-        choiceBoxStatus.setItems(FXCollections.observableArrayList("Toutes", "Actives", "Terminées"));
+        choiceBoxStatus.setItems(FXCollections.observableArrayList("Toutes", "Actives", "En cours", "Terminées"));
         choiceBoxStatus.getSelectionModel().selectFirst();
 
         choiceBoxService.getItems().add("Tous les services");
