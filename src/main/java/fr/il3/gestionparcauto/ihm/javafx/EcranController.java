@@ -76,7 +76,7 @@ public class EcranController {
         masterVehicleList.stream().map(v -> v.getModel().getBrand().getName()).distinct().forEach(choiceBoxBrand.getItems()::add);
         choiceBoxBrand.getSelectionModel().selectFirst();
 
-        choiceBoxStatus.setItems(FXCollections.observableArrayList("Toutes", "Actives", "En cours", "Terminées"));
+        choiceBoxStatus.setItems(FXCollections.observableArrayList("Toutes", "A venir", "En cours", "Terminées"));
         choiceBoxStatus.getSelectionModel().selectFirst();
 
         choiceBoxService.getItems().add("Tous les services");
@@ -180,12 +180,12 @@ public class EcranController {
 
     @FXML
     private void filterAssignments() {
-        String selected = choiceBoxStatus.getValue();
-        LocalDate today = LocalDate.now();
+        int selected = choiceBoxStatus.getSelectionModel().getSelectedIndex();
         filteredAssignments.setPredicate(a -> {
-            if (selected == null || selected.equals("Toutes")) return true;
-            boolean isActive = !a.getDateStart().isAfter(today) && !a.getDateEnd().isBefore(today);
-            return selected.equals("Actives") ? isActive : !isActive;
+            if (selected == 0) {
+            return true;
+        }
+            return a.isActive() == selected;
         });
     }
 
