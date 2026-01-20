@@ -60,6 +60,11 @@ public class EcranController {
 
     @FXML
     public void initialize() throws DalException {
+
+        choiceBoxBrand.getItems().clear();
+        choiceBoxService.getItems().clear();
+        choiceBoxStatus.getItems().clear();
+
         ObservableList<Vehicle> masterVehicleList = FXCollections.observableArrayList(VehicleController.getController().selectVehicle());
         ObservableList<Employee> masterEmployeeList = FXCollections.observableArrayList(EmployeeController.getController().selectEmployee());
         ObservableList<Assignment> masterAssignmentList = FXCollections.observableArrayList(AssignmentController.getController().selectAssignment());
