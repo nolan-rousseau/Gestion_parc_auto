@@ -44,9 +44,9 @@ public class Edit_AssignmentController implements Initializable {
     }
 
     @FXML
-    private void AddAssignment(ActionEvent event) {
+    private void UpdateAssignment(ActionEvent event) {
         try {
-            Assignment assignment = new Assignment();
+            Assignment assignment = assignmentToEdit;
 
             assignment.setEmployee(comboEmployee.getValue());
             assignment.setVehicle(comboVehicle.getValue());
@@ -55,10 +55,11 @@ public class Edit_AssignmentController implements Initializable {
             assignment.setDateEnd(datepickerEnd.getValue());
 
             AssignmentController assignmentController = new AssignmentController();
-            assignmentController.addAssignment(assignment);
+            assignmentController.updateAssignment(assignment);
             ClearValues();
-            ihmWindowBox.showInformation("L'affectation à été créé avec succès.");
+            ihmWindowBox.showInformation("L'affectation à été modifié avec succès.");
             LoadAll();
+            UpdateControlsWithAssignment(assignment);
         } catch (Exception e){
             ihmWindowBox.showException(e.getMessage());
         }
@@ -89,17 +90,17 @@ public class Edit_AssignmentController implements Initializable {
     }
 
     protected void UpdateControlsWithAssignment(Assignment assignment) {
-//        this.assignmentToEdit = assignment;
-//        if (assignment != null) {
-//            if (assignment.getService() != null) {
-//                comboService.setValue(employee.getService().getName());
-//            }
-//
-//            textfieldFirstname.setText(employee.getFirstName());
-//            textfieldLastname.setText(employee.getLastName());
-//            textfieldMail.setText(employee.getEmail());
-//            textfieldPhone.setText(employee.getPhone());
-//
-//        }
+        this.assignmentToEdit = assignment;
+        if (assignment != null) {
+            if (assignment.getEmployee() != null) {
+                comboEmployee.setValue(assignment.getEmployee());
+            }
+            if (assignment.getVehicle() != null) {
+                comboVehicle.setValue(assignment.getVehicle());
+            }
+            textfieldComment.setText(assignment.getComment());
+            datepickerStart.setValue(assignment.getDateStart());
+            datepickerEnd.setValue(assignment.getDateEnd());
+        }
     }
 }
