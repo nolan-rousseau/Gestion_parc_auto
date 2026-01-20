@@ -189,7 +189,6 @@ public class EcranController {
         OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Assignment.fxml", this);
     }
 
-
     @FXML
     private void ExportAssignments(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -237,9 +236,39 @@ public class EcranController {
     private void AddEmployee(ActionEvent event) {
         OpenWindow("/fr/il3/gestionparcauto/fxml/Add_Employee.fxml", this);
     }
+
     @FXML
     private void ModifyEmployee(ActionEvent event) {
-        OpenWindow("/fr/il3/gestionparcauto/fxml/Edit_Employee.fxml", this);
+        Employee employeeSelected = listViewEmployees.getSelectionModel().getSelectedItem();
+
+        if (employeeSelected == null) {
+            ihmWindowBox.showInformation("Veuillez sélectionner un employé à modifier.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/il3/gestionparcauto/fxml/Edit_Employee.fxml"));
+            Parent root = loader.load();
+
+            Edit_EmployeeController controller = loader.getController();
+            controller.UpdateControlsWithEmployee(employeeSelected);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+
+            stage.setOnHidden(e -> {
+                try {
+                    this.initialize();
+                } catch (DalException ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            stage.show();
+        } catch (Exception e) {
+            ihmWindowBox.showException("Erreur lors de l'ouverture de la fenêtre : " + e.getMessage());
+        }
     }
 
     @FXML
