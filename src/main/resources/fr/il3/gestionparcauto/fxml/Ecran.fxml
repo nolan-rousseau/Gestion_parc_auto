@@ -17,13 +17,9 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnCreateAssignment" mnemonicParsing="false" onAction="#CreateAssignment" text="Créer une affectation">
-               <HBox.margin>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </HBox.margin>
-            </Button>
          </children>
       </HBox>
+      <Label alignment="CENTER" prefHeight="17.0" prefWidth="405.0" text="Sélectionner un véhicule ou un agent pour visualiser leur(s) affectation(s)" textAlignment="CENTER" />
       <GridPane alignment="TOP_CENTER" hgap="8.0" prefHeight="1000.0" vgap="8.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
@@ -84,7 +80,47 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="405.0" text="Sélectionner un véhicule ou un agent pour visualiser leur(s) affectation(s)" textAlignment="CENTER" />
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="91.0" prefWidth="754.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" text="Affectations" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="TOP_CENTER" prefHeight="24.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#CreateAssignment" text="Ajouter">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#ModifyAssignment" text="Modifier">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#DeleteAssignment" text="Supprimer">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
                   </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">

@@ -190,6 +190,66 @@ public class EcranController {
     }
 
     @FXML
+    private void ModifyAssignment(ActionEvent event) {
+        Assignment assignmentSelected = tableViewAssignments.getSelectionModel().getSelectedItem();
+
+        if (assignmentSelected == null) {
+            ihmWindowBox.showInformation("Veuillez sélectionner une affectation à modifier.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/il3/gestionparcauto/fxml/Edit_Assignment.fxml"));
+            Parent root = loader.load();
+
+            Edit_AssignmentController controller = loader.getController();
+            controller.UpdateControlsWithAssignment(assignmentSelected);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+
+            stage.setOnHidden(e -> {
+                try {
+                    this.initialize();
+                } catch (DalException ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            stage.show();
+        } catch (Exception e) {
+            ihmWindowBox.showException("Erreur lors de l'ouverture de la fenêtre : " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void DeleteAssignment(ActionEvent event) {
+        Assignment assignmentSelected = tableViewAssignments.getSelectionModel().getSelectedItem();
+
+        if (assignmentSelected == null) {
+            ihmWindowBox.showInformation("Veuillez sélectionner un employé à supprimer.");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText("Suppression de l'affectation : " + assignmentSelected.toString());
+        alert.setContentText("Êtes-vous sûr de vouloir supprimer cet affectation ?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                AssignmentController.getController().deleteAssignment(assignmentSelected.getId());
+                ihmWindowBox.showInformation("L'affectation a été supprimée avec succès.");
+                initialize();
+            } catch (Exception e) {
+                ihmWindowBox.showException(e.getMessage());
+            }
+        }
+    }
+
+    @FXML
     private void ExportAssignments(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Exporter les affectations");
