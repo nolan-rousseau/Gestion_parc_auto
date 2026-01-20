@@ -12,8 +12,13 @@ import java.sql.Statement;
 public class StatsDAOJdbcImpl implements StatsDAO {
     private void fillList(Connection conn, String query, ListView<String> list, String format) throws SQLException {
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            int rank = 1;
             while (rs.next()) {
-                list.getItems().add(String.format(format, rs.getString(1), rs.getString(2), rs.getInt(3)));
+                list.getItems().add(String.format("[" + rank + "] - " + format,
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3)));
+                rank++;
             }
         }
     }
