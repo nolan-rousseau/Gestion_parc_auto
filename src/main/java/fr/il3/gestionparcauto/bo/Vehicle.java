@@ -77,8 +77,13 @@ public class Vehicle {
     }
 
     public String getInfo() {
-        return "Date d'immatriculation : " + registrationDate.toString() + "\n" +
-                "Kilométrage : " + mileage.toString() + "\n" +
-                "Remarques : " + comment;
+        String info = "Date d'immatriculation : " + registrationDate.toString() + "\n" +
+                "Kilométrage : " + mileage.toString();
+
+        if (comment != null && !comment.trim().isEmpty()) {
+            info += "\nRemarques : " + comment;
+        }
+
+        return info;
     }
 }
