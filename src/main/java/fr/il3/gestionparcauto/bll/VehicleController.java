@@ -5,6 +5,7 @@ import fr.il3.gestionparcauto.bo.Vehicle;
 import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.utils.DalException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class VehicleController {
@@ -24,6 +25,7 @@ public class VehicleController {
 
     public void addVehicle(Vehicle vehicle) throws DalException {
         verifObjectVehicle(vehicle);
+        vehicle.setLastUpdateMileage(LocalDate.now());
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getVehicleDAO().addVehicle(vehicle);
     }
@@ -34,6 +36,7 @@ public class VehicleController {
         }
         verifObjectVehicle(vehicle);
 
+        vehicle.setLastUpdateMileage(LocalDate.now());
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getVehicleDAO().updateVehicle(vehicle);
     }

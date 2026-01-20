@@ -1,6 +1,7 @@
 package fr.il3.gestionparcauto.bo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Vehicle {
     private int id;
@@ -83,6 +84,8 @@ public class Vehicle {
     }
 
     public String getInfo() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         String info = "Date d'immatriculation : " + registrationDate.toString() +
                 "\nKilométrage : " + mileage.toString();
 
@@ -90,7 +93,7 @@ public class Vehicle {
             info += "\nRemarques : " + comment;
         }
 
-        info += "\n\nDernière mise à jour : " + lastUpdateMileage.toString();
+        info += "\n\nDernière mise à jour : " + lastUpdateMileage.format(formatter);
 
         return info;
     }
