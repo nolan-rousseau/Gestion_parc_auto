@@ -3,12 +3,14 @@ package fr.il3.gestionparcauto.bll;
 import fr.il3.gestionparcauto.bo.Brand;
 import fr.il3.gestionparcauto.bo.Employee;
 import fr.il3.gestionparcauto.bo.Model;
+import fr.il3.gestionparcauto.bo.Service;
 import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.utils.DalException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ModelController {
     private static ModelController modelController;
@@ -71,5 +73,15 @@ public class ModelController {
                 .findFirst()
                 .orElse(null);
         return specificModel;
+    }
+
+    public boolean modelAttributed(Model model) throws DalException {
+        AtomicBoolean result = new AtomicBoolean(false);
+        VehicleController.getController().selectVehicle().forEach(vehicle -> {
+            if (vehicle.getModel().getId() == model.getId()) {
+                result.set(true);
+            }
+        });
+        return result.get();
     }
 }

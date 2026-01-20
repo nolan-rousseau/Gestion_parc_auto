@@ -3,11 +3,13 @@ package fr.il3.gestionparcauto.bll;
 import fr.il3.gestionparcauto.bo.Assignment;
 import fr.il3.gestionparcauto.bo.Brand;
 import fr.il3.gestionparcauto.bo.Model;
+import fr.il3.gestionparcauto.bo.Service;
 import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.utils.DalException;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BrandController {
     private static BrandController brandController;
@@ -67,5 +69,23 @@ public class BrandController {
                 .findFirst()
                 .orElse(null);
         return specificBrand;
+    }
+
+    public ArrayList<String> selectBrandToArrayString() throws DalException {
+        ArrayList<String> brandsNames = new ArrayList<>();
+        selectBrand().forEach(Brand -> {
+            brandsNames.add(Brand.getName());
+        });
+        return brandsNames;
+    }
+
+    public boolean brandAttributed(Brand brand) throws DalException {
+        AtomicBoolean result = new AtomicBoolean(false);
+        ModelController.getController().selectModel().forEach(model -> {
+            if (model.getBrand().getId() == brand.getId()) {
+                result.set(true);
+            }
+        });
+        return result.get();
     }
 }

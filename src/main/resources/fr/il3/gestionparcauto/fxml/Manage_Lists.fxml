@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.il3.gestionparcauto.ihm.javafx.Manage_ListsController">
    <padding>
       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
    </padding>
@@ -21,8 +21,8 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                <children>
-                  <Label prefWidth="100.0" text="Marques" />
-                  <ComboBox fx:id="comboBrands" prefWidth="150.0">
+                  <Label prefWidth="100.0" text="Marques :" />
+                  <ComboBox fx:id="comboBrand" prefWidth="150.0">
                      <HBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </HBox.margin></ComboBox>
@@ -30,17 +30,17 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnAddBrand" mnemonicParsing="false" text="Ajouter">
+                  <Button fx:id="btnAddBrand" mnemonicParsing="false" onAction="#AddBrand" text="Ajouter">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnEditBrand" mnemonicParsing="false" text="Modifier">
+                  <Button fx:id="btnEditBrand" mnemonicParsing="false" onAction="#ModifyBrand" text="Modifier">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnDeleteBrand" mnemonicParsing="false" text="Supprimer">
+                  <Button fx:id="btnDeleteBrand" mnemonicParsing="false" onAction="#DeleteBrand" text="Supprimer">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </HBox.margin>
@@ -55,8 +55,8 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                <children>
-                  <Label prefWidth="100.0" text="Modèles" />
-                  <ComboBox fx:id="comboModels" prefWidth="150.0">
+                  <Label prefWidth="100.0" text="Modèles :" />
+                  <ComboBox fx:id="comboModel" prefWidth="150.0">
                      <HBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </HBox.margin></ComboBox>
@@ -64,17 +64,17 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnAddModel" mnemonicParsing="false" text="Ajouter">
+                  <Button fx:id="btnAddModel" mnemonicParsing="false" onAction="#AddModel" text="Ajouter">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnEditModel" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" text="Modifier">
+                  <Button fx:id="btnEditModel" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" onAction="#ModifyModel" text="Modifier">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnDeleteModel" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" text="Supprimer">
+                  <Button fx:id="btnDeleteModel" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" onAction="#DeleteModel" text="Supprimer">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </HBox.margin>
@@ -88,8 +88,8 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                <children>
-                  <Label prefWidth="100.0" text="Services" />
-                  <ComboBox fx:id="comboServices" prefWidth="150.0">
+                  <Label prefWidth="100.0" text="Services :" />
+                  <ComboBox fx:id="comboService" prefWidth="150.0">
                      <HBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </HBox.margin></ComboBox>
@@ -97,17 +97,17 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnAddService" mnemonicParsing="false" text="Ajouter">
+                  <Button fx:id="btnAddService" mnemonicParsing="false" onAction="#AddService" text="Ajouter">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnEditService" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" text="Modifier">
+                  <Button fx:id="btnEditService" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" onAction="#ModifyService" text="Modifier">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnDeleteService" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" text="Supprimer">
+                  <Button fx:id="btnDeleteService" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" onAction="#DeleteService" text="Supprimer">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </HBox.margin>

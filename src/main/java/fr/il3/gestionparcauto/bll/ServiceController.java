@@ -1,12 +1,11 @@
 package fr.il3.gestionparcauto.bll;
 
-import fr.il3.gestionparcauto.bo.Brand;
-import fr.il3.gestionparcauto.bo.Model;
 import fr.il3.gestionparcauto.bo.Service;
 import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.utils.DalException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ServiceController {
     private static ServiceController serviceController;
@@ -67,5 +66,15 @@ public class ServiceController {
                 .findFirst()
                 .orElse(null);
         return specificService;
+    }
+
+    public boolean serviceAttributed(Service service) throws DalException {
+        AtomicBoolean result = new AtomicBoolean(false);
+        EmployeeController.getController().selectEmployee().forEach(employee -> {
+            if (employee.getService().getId() == service.getId()) {
+                result.set(true);
+            }
+        });
+        return result.get();
     }
 }
