@@ -223,6 +223,7 @@
                   </HBox>
                   <TableView fx:id="tableViewAssignments" prefWidth="200.0">
                     <columns>
+                        <TableColumn fx:id="statusCol" text="État" />
                         <TableColumn fx:id="vehicleCol" text="Véhicule" />
                         <TableColumn fx:id="employeeCol" text="Employé" />
                         <TableColumn fx:id="startCol" text="Début" />

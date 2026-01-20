@@ -43,6 +43,7 @@ public class EcranController {
     @FXML private TableColumn<Assignment, String> employeeCol;
     @FXML private TableColumn<Assignment, LocalDate> startCol;
     @FXML private TableColumn<Assignment, LocalDate> endCol;
+    @FXML private TableColumn<Assignment, Assignment> statusCol;
 
     @FXML private TextArea textAreaInfoVehicle;
     @FXML private TextArea textAreaInfoAssignment;
@@ -130,6 +131,26 @@ public class EcranController {
                         textAreaInfoEmployee.clear();
                     }
                 });
+
+        statusCol.setCellValueFactory(cell -> new javafx.beans.property.SimpleObjectProperty<>(cell.getValue()));
+
+        statusCol.setCellFactory(column -> new TableCell<Assignment, Assignment>() {
+            @Override
+            protected void updateItem(Assignment item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) {
+                    setGraphic(null);
+                    setStyle("");
+                } else {
+                    LocalDate today = LocalDate.now();
+                    boolean isActive = !item.getDateStart().isAfter(today) && !item.getDateEnd().isBefore(today);
+
+                    javafx.scene.shape.Circle indicator = new javafx.scene.shape.Circle(8);
+                    indicator.setFill(isActive ? javafx.scene.paint.Color.GREEN : javafx.scene.paint.Color.RED);
+                }
+            }
+        });
     }
 
     @FXML
