@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
+   <children>
+      <Label text="Gestion des listes">
+         <VBox.margin>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <VBox alignment="CENTER_RIGHT" prefWidth="100.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+               <children>
+                  <Label prefWidth="100.0" text="Marques" />
+                  <ComboBox fx:id="comboBrands" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </HBox.margin></ComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnAddBrand" mnemonicParsing="false" text="Ajouter">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnEditBrand" mnemonicParsing="false" text="Modifier">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnDeleteBrand" mnemonicParsing="false" text="Supprimer">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+               </children></HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </VBox.margin>
+      </VBox>
+      <VBox alignment="CENTER_RIGHT" prefWidth="100.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+               <children>
+                  <Label prefWidth="100.0" text="Modèles" />
+                  <ComboBox fx:id="comboModels" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </HBox.margin></ComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnAddModel" mnemonicParsing="false" text="Ajouter">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnEditModel" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" text="Modifier">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnDeleteModel" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" text="Supprimer">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+               </children></HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </VBox.margin></VBox>
+      <VBox alignment="CENTER_RIGHT" prefWidth="100.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+               <children>
+                  <Label prefWidth="100.0" text="Services" />
+                  <ComboBox fx:id="comboServices" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </HBox.margin></ComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnAddService" mnemonicParsing="false" text="Ajouter">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnEditService" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" text="Modifier">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnDeleteService" layoutX="342.0" layoutY="37.0" mnemonicParsing="false" text="Supprimer">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+               </children></HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </VBox.margin></VBox>
+   </children>
+</VBox>
