@@ -147,7 +147,7 @@ public class EcranController {
                     Color color = Color.BLACK;
                     switch (item.isActive()){
                         case 1:
-                            color = Color.YELLOW;
+                            color = Color.ORANGE;
                             break;
                         case 2:
                             color = Color.GREEN;
