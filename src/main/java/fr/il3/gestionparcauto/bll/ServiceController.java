@@ -1,9 +1,11 @@
 package fr.il3.gestionparcauto.bll;
 
+import fr.il3.gestionparcauto.bo.Model;
 import fr.il3.gestionparcauto.bo.Service;
 import fr.il3.gestionparcauto.dal.DAOFactory;
 import fr.il3.gestionparcauto.utils.DalException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ServiceController {
     private static ServiceController serviceController;
@@ -47,5 +49,19 @@ public class ServiceController {
 
         DAOFactory daoFactory = new DAOFactory();
         daoFactory.getServiceDAO().deleteService(id);
+    }
+
+    public Service getServiceFromName(String name) throws DalException {
+        Service specificService = selectService().stream()
+                .filter(b -> {
+                    try {
+                        return Objects.equals(b.getName(), name);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .findFirst()
+                .orElse(null);
+        return specificService;
     }
 }
